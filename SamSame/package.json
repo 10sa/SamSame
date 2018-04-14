@@ -1,0 +1,9 @@
+{
+  "name": "sam-same",
+  "version": "0.0.0",
+  "description": "SamSame",
+  "main": "server.js",
+  "author": {
+    "name": "User"
+  }
+}
