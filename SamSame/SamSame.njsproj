@@ -29,7 +29,13 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Apis\APIs.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Apis\DBConnector.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Apis\Pages.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="server.js" />
