@@ -1,5 +1,5 @@
 ﻿var mysql = require("mysql");
-var dbConfigs = require("/configs/configs.js").dev;
+var dbConfigs = require("/Configs/configs.js").dev;
 
 module.exports = function () {
 	return {
