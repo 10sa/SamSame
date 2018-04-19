@@ -1,6 +1,8 @@
 ﻿var mysql = require("mysql");
 var dbConfigs = require("/Configs/configs.js").dev;
 
+// 민찬 코드 수정
+
 module.exports = function () {
 	return {
 		init: function () {
