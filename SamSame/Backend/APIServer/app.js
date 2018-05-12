@@ -7,4 +7,7 @@ const bodyParser = require('body-parser');
 require('./config')();
 
 /* Express Setting */
-app.use(body)
+app.use(bodyParser.urlencoded({ extended : false }));
+app.use(bodyParser.raw());
+
+// Add api Router
