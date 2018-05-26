@@ -10,12 +10,14 @@ module.exports = {
 	getPage: function (response, category, reputation, summary, origin, text)
 	{
 		response.json({
-			category: category,
-			reputation: reputation,
-			summary: summary,
-			origin: origin,
-			text: text
-		})
+			pageData: {
+				category: category,
+				reputation: reputation,
+				summary: summary,
+				origin: origin,
+				text: text
+			}
+		});
 	}
 
 	badPage: function (response, isSuccess)
