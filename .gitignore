@@ -289,3 +289,6 @@ __pycache__/
 
 # Important confgis.
 SamSame/Apis/Configs/configs.js
+
+backend/node_modules
+backend/package-lock.js
