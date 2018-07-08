@@ -292,3 +292,4 @@ SamSame/Apis/Configs/configs.js
 
 backend/node_modules
 backend/package-lock.js
+backend/.env

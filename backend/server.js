@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 
 /* custom modules */
-const config = require('./config')(app)
+require('./config')(app)
 const error = require('./error/index')
 const routes = require('./routes/index')
 

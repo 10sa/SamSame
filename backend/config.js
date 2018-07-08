@@ -1,14 +1,28 @@
-require('dotenv').config()
+const dotenv = require('dotenv').config()
+const dbconfig = require('./database/connect')
 
-/*
-    Write here dotenv configure varaible :
-    PORT = (NUMBER)
-*/
+const setEnv = function (app) {
+    return new Promise(function (resolve, reject) {
+        try {
+            for (let s in process.env) {
+                // dotenv configure
+                app.set(s, process.env[s])
+            }
+        } catch (err) {
+            reject(err)
+        }
 
-module.exports = function(app) {
-    /* .env config */
-    for(key in process.env) {
-        let val = process.env[key]
-        app.set(key, val)
-    }
+        resolve(app)
+    })
+}
+
+const errorProc = function (err) {
+    console.log('Error Catched!')
+    console.log(err)
+}
+
+module.exports = function (app) {
+    setEnv(app)
+        .then(dbconfig)
+        .catch(errorProc)
 }
