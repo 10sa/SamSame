@@ -1,0 +1,457 @@
+* {
+    margin: 0;
+}
+
+body {
+    margin:0;
+    width:100%;
+    height:100%;
+}
+
+.bigdiv {
+   background-color: #ffffff;
+   width: 1700px;
+   height: 75px;
+   position: static;
+}
+
+.circle {
+  display: inline-block;
+  background-color: #7b68ee;
+  width: 45px;
+  height: 45px;
+  margin-left: 650px;
+  border-radius: 50px;
+  position: static;
+}
+
+.mainView {
+  top: 5px;
+  width: 80%;
+  background: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  padding: 20px 0 20px 0;
+  text-align: center;
+  position: static;
+}
+
+.centertag{
+  margin-bottom: 20px;
+}
+
+.titleView {
+  width: 90%;
+  padding-left: 20px;
+  margin: auto;
+  text-align: left;
+  display: inline-block;
+  position: static;
+}
+
+.postView {
+  padding: 1em;
+  position: static;
+}
+
+.centerDiv {
+  display: inline-block;
+  margin: 1em;
+  position: static;
+}
+
+.centerDiv1{
+    width : 270px;
+    height : 330px;
+    background-color : #000000;
+    border-radius: 20px;
+    position: static;
+}
+
+.centerDiv2{
+    width : 270px;
+    height : 140px;
+    background-color : #D8D8D8;
+    border-radius: 20px;
+    position: static;
+}
+
+.centerDiv3{
+    width : 270px;
+    height : 330px;
+    background-color : #000000;
+    border-radius: 20px;
+    margin-top: 5%;
+    position: static;
+}
+
+.centerDiv4{
+    width : 270px;
+    height : 140px;
+    background-color : #D8D8D8;
+    border-radius: 20px;
+    margin-bottom: 0px;
+    position: static;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+.search {
+  width: 100%;
+  position: relative;
+
+}
+
+.searchTerm {
+  float: left;
+  width: 120%;
+  border: 3px solid #7b68ee;
+  padding: 5px;
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  color: #7b68ee;
+
+}
+
+.searchTerm:focus{
+  color: #7b68ee;
+
+}
+
+.searchButton {
+  position: absolute;
+  right: -110px;
+  width: 50px;
+  height: 46px;
+  border: 1px solid #7b68ee;
+  background: #7b68ee;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+
+}
+
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 5%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+
+}
+
+.finder {
+    position: relative;
+    z-index: 10;
+    border: 1px solid #dedede;
+    zoom: 1;
+}
+
+.finder:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.finder_col:first-child {
+    border-top: 0;
+}
+.finder_col {
+    position: relative;
+    clear: both;
+    padding-left: 159px;
+    padding-bottom: 8px;
+}
+
+.finder_col .finder_tit {
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    bottom: -1px;
+    width: 160px;
+    background-color: #7b68ee;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 46px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.finder_col .finder_tit strong {
+    display: inline-block;
+    padding-left: 15px;
+    vertical-align: top;
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+
+
+.finder_col .btn_extend {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 42px;
+    text-align: right;
+}
+a {
+    text-decoration: none;
+}
+user agent stylesheet
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.finder_col .btn_extend span {
+    display: inline-block;
+    overflow: hidden;
+    width: 8px;
+    height: 8px;
+    margin: 17px 13px 0 0;
+    background: url(https://ssl.pstatic.net/imgshopping/static/pc-real-2017/img/search/sp_search_v30.png) no-repeat -130px -20px;
+    line-height: 9999px;
+    vertical-align: top;
+}
+
+
+
+.finder_row {
+    overflow: hidden;
+    clear: both;
+    position: relative;
+}
+
+.finder_tit_list {
+    overflow: hidden;
+    position: relative;
+    max-height: 25px;
+    min-height: 25px;
+    padding: 8px 0 0 5px;
+    list-style: none;
+}
+
+.finder_tit_list li {
+    float: left;
+    position: relative;
+    height: 23px;
+    padding: 1px 3px;
+    list-style: none;
+}
+
+.finder_tit_list:after {
+    display: block;
+    clear: both;
+    content: '';
+    list-style: none;
+}
+
+.finder_col.finder_fix .finder_tit_list~.scroll_search {
+    display: none;
+}
+.finder_tit_list+.scroll_search {
+    display: none;
+}
+.scroll_search {
+    position: relative;
+}
+
+.scrollbar_content {
+    position: relative;
+    max-height: 25px;
+    zoom: 1;
+}
+
+.finder_cell {
+    float: left;
+    position: relative;
+    max-height: 33px;
+}
+
+.finder_col:first-child {
+    border-top: 0;
+}
+
+.finder_col .finder_list {
+    overflow: hidden;
+    position: relative;
+    max-height: 25px;
+    min-height: 25px;
+    padding: 8px 0 0 5px;
+    list-style: none;
+}
+
+.finder_col .finder_tit strong {
+    display: inline-block;
+    padding-left: 15px;
+    vertical-align: top;
+}
+
+.finder_col .btn_extend {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 42px;
+    text-align: right;
+}
+a {
+    text-decoration: none;
+}
+
+.finder_col .finder_list li {
+    float: left;
+    position: relative;
+    height: 23px;
+    margin-bottom: 4px;
+    padding: 1px 3px;
+}
+
+.finder_col .finder_list li a {
+    display: inline-block;
+    position: relative;
+    height: 23px;
+    padding: 0 11px;
+    line-height: 26px;
+    color: #202022;
+    vertical-align: top;
+}
+a {
+    text-decoration: none;
+}
+
+.finder_col.finder_etc {
+    padding-bottom: 0;
+}
+.finder_col {
+    position: relative;
+    clear: both;
+    padding-left: 159px;
+    padding-bottom: 8px;
+    border-top: 1px solid #f4f4f6;
+}
+
+.finder_col .finder_list:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.finder_etc_inner {
+    overflow: hidden;
+    height: 41px;
+}
+
+.finder_col.finder_etc {
+    padding-bottom: 0;
+}
+
+.finder_col .btn_extend {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 42px;
+    text-align: right;
+}
+a {
+    text-decoration: none;
+}
+user agent stylesheet
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.finder_col.finder_etc .finder_tit_list {
+    display: inline-block;
+    padding-bottom: 8px;
+    border-bottom: 0;
+    background: none;
+    vertical-align: top;
+}
+.finder_tit_list {
+    overflow: hidden;
+    position: relative;
+    max-height: 25px;
+    min-height: 25px;
+    padding: 8px 0 0 5px;
+}
+
+.finder_color {
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-right: 20px;
+    border-left: 1px solid #f4f4f6;
+    list-style: none;
+}
+
+.finder_color_tit {
+    float: left;
+    width: 88px;
+    height: 41px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 44px;
+    color: #202022;
+    text-align: center;
+}
+
+.finder_color_list {
+    overflow: hidden;
+    position: relative;
+    width: 320px;
+    height: 32px;
+}
+
+.finder_more {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    right: -24px;
+    bottom: -1px;
+    width: 24px;
+    height: 24px;
+    background: url(https://ssl.pstatic.net/imgshopping/static/pc-real-2017/img/search/sp_search_v30.png) no-repeat -440px -75px;
+    line-height: 9999px;
+    vertical-align: top;
+}
+a {
+    text-decoration: none;
+}
+user agent stylesheet
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+
+.finder_tit {
+    text-align: left;
+}
