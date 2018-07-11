@@ -1,6 +1,6 @@
-var Utils = {};
+var Util = {};
 
-Utils.CallAPI = function (params, path, method, callback) {
+Util.CallAPI = function (params, path, method, callback) {
 	var http = new XMLHttpRequest();
 	http.open(method, path, true);
 	http.onreadystatechange = function () {
