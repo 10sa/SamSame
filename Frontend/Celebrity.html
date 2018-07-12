@@ -4,7 +4,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="resources/css/Celebrity.css" type="text/css" />
-
     <style type="text/css">
         .my-box {
             border: 1.5px solid #7B68EE;
@@ -12,7 +11,23 @@
         }
     </style>
 
-
+	<script type="text/javascript" src="resources/js/api-search.js"></script>
+	<script type="text/javascript" src="resources/js/utils.js"></script>
+	<script type="text/javascript">
+		function searchFormOnKeyDown()
+		{
+			if (event.keyCode == 13)
+				doSearching();
+		}
+		
+		function doSearching()
+		{
+			var searchString = document.getElementById("searchForm").value;
+			search.searching(searchString, function(response) {
+				// TO DO:: Display Response Profiles  //
+			});
+		}
+	</script>
 </head>
 
 <body>
@@ -21,8 +36,8 @@
         <img src="resources/images/logo_1.jpg" width="48px" height="47px" style="margin-left: 410px; margin-top: 12px;">
         <div class="wrap">
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="">
-                <button type="submit" class="searchButton">
+                <input type="text" class="searchTerm" placeholder="" id="searchForm" onkeydown="searchFormOnKeyDown();">
+                <button type="submit" class="searchButton" onclick="doSearching();">
                     <img src="resources/images/search.png" width="22.5px" height="23px">
                 </button>
             </div>
