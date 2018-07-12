@@ -2,7 +2,8 @@
 const router = require('express').Router()
 
 /* load mongoose models */
-const Profile = require('./../database/models/profile')
+const Profile = require('./../../database/models/profile')
+const User = require('./../../database/models/user')
 
 /* load custom modules & functions */
 const isNullOrUndefined = require('./../func/isNullOrUndefined')

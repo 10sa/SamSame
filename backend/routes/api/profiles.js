@@ -44,8 +44,10 @@ router.put('/favProfile', (req, res) => {
 			if (data.favprofiles.indexOf(profileid) !== null)
 				return res.json({ message: 'Already selected!' })
 
+			let newFav = data.favprofiles.push(profileid)
+
 			User.findByIdAndUpdate(req.user.id, {
-				favprofiles: this.favprofiles.push(profileid)
+				favprofiles: newFav
 			})
 				.then(data => {
 					res.json({ message: 'Success to Update!' })
