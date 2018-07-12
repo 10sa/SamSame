@@ -62,35 +62,39 @@ body {
 }
 
 .centerDiv1{
-    width : 270px;
-    height : 330px;
-    background-color : #000000;
-    border-radius: 20px;
+    width : 266px;
+    height : 270px;
+    border : 2px solid #7b68ee;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     position: static;
 }
 
 .centerDiv2{
     width : 270px;
-    height : 140px;
+    height : 110px;
     background-color : #D8D8D8;
-    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     position: static;
 }
 
 .centerDiv3{
-    width : 270px;
-    height : 330px;
-    background-color : #000000;
-    border-radius: 20px;
+    width : 266px;
+    height : 270px;
+    border : 2px solid #7b68ee;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     margin-top: 5%;
     position: static;
 }
 
 .centerDiv4{
     width : 270px;
-    height : 140px;
+    height : 110px;
     background-color : #D8D8D8;
-    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     margin-bottom: 0px;
     position: static;
 }
@@ -450,6 +454,42 @@ a:-webkit-any-link {
     text-decoration: underline;
 }
 
+
+
 .finder_tit {
     text-align: left;
+}
+
+.tagdiv {
+    width: 266px;
+    height: 30px;
+    border: 2px solid #7373b7;
+}
+
+.infodiv{
+    width: 266px;
+    height: 73px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: 2px solid #7373b7;
+}
+
+.namediv {
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 5px;
+    float: left;
+    display: inline-block;
+}
+
+.circlediv{
+    width: 42px;
+    height: 42px;
+    background-color: #202022;
+    border-radius: 42px;
+    text-align: right;
+    display: inline-block;
+    position: relative;
+    left: 30px;
+    top: 15px;
 }
