@@ -12,8 +12,17 @@
 	{
 		var password = document.getElementById("password").Value;
 		var Repassword = document.getElementById("Repassword").Value;
-		if (password == Repassword)
-			account.register(document.getElementById("email").Value, password, function(response) {document.location.href = ""} ); // redirect to somewhere?
+		var email = document.getElementById("email").Value;
+		
+		if (password != "" && Repassword != "" && email != "")
+		{
+			if (password == Repassword)
+				account.register(, password, function(response) {document.location.href = ""} ); // redirect to somewhere?
+		}
+		else
+		{
+			// when something is empty
+		}
 	}
   </script>
   <title>Register</title>
