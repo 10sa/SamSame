@@ -10,8 +10,8 @@
   <script type="text/javascript">
 	function onSubmitLogin()
 	{
-		var email = document.getElementById("email").Value;
-		var password = document.getElementById("password").Value;
+		var email = document.getElementById("email").value;
+		var password = document.getElementById("password").value;
 		
 		if (email != "" && password != "")
 			account.login(email, password, function(response) { window.location.href = ""}); // redirect to somewhere
