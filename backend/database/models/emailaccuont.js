@@ -7,4 +7,4 @@ const EmailAccountSchema = new Schema({
     password: { type: Schema.Types.String, required: true }
 })
 
-module.exports = mongoose.model('FavProfile', EmailAccountSchema)
+module.exports = mongoose.model('EmailAccount', EmailAccountSchema)

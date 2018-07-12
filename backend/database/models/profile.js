@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const ProfileSchema = new Schema({
     imageuri: String,
-    username: String,
+    profilename: String,
     originfollow: String,
     originprofileuri: String
 })

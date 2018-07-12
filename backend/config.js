@@ -8,11 +8,10 @@ const setEnv = function (app) {
                 // dotenv configure
                 app.set(s, process.env[s])
             }
+            resolve(app)
         } catch (err) {
             reject(err)
         }
-
-        resolve(app)
     })
 }
 

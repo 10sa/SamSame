@@ -6,4 +6,4 @@ const ProfileTagSchema = new Schema({
     tag: {type: String, required: true}
 })
 
-module.exports = mongoose.model('FavProfile', ProfileTagSchema)
+module.exports = mongoose.model('ProfileTag', ProfileTagSchema)
