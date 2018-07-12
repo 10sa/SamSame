@@ -2,15 +2,16 @@
 const router = require('express').Router()
 
 /* load routers */
-const account = require('./account')
-//const profiles = require('./profiles')
-//const search = require('./search')
+const account = require('./api/account')
+const profiles = require('./api/profiles')
+const search = require('./api/search')
 
 /* load middlewares */
 const auth = require('./../middlewares/auth')
 
-router.use('/account', auth, account)
-//router.use('/profiles', auth, profiles)
-//router.use('/search', auth, search)
+router.use(auth)
+router.use('/account', account)
+router.use('/profiles', profiles)
+router.use('/search', search)
 
 module.exports = router

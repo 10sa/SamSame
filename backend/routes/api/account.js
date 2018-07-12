@@ -3,17 +3,11 @@ const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 
 /* load mongoose models */
-const mongoose = require('mongoose')
-const EmailAccount = require('./../database/models/emailaccuont')
-const User = require('./../database/models/user')
+const EmailAccount = require('./../../database/models/emailaccuont')
+const User = require('./../../database/models/user')
 
-function isNullOrUndefined() {
-	for (let i = 0; i < arguments.length; i++) {
-		if (arguments[i] === null || arguments[i] === undefined)
-			return true
-	}
-	return false
-}
+/* load custom modules & functions */
+const isNullOrUndefined = require('./../func/isNullOrUndefined')
 
 router.post('/login', (req, res, next) => {
 	console.log(req.user)
@@ -101,13 +95,18 @@ router.put('/register', (req, res, next) => {
 					if (data == null)
 						return res.send('Error!')
 
-					let eac = new EmailAccount({ userid: data._id, email: email, password: password })
+					let eac = new EmailAccount(
+						{
+							userid: data._id,
+							email: email,
+							password: password
+						})
 					eac.save()
 					res.send('Hello!')
 				})
 		})
 		.catch(err => {
-			res.send(err)
+			next(err)
 		})
 })
 
