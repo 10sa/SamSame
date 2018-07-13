@@ -8,7 +8,7 @@ body {
    background-color: #ffffff;
    width: 1700px;
    height: 75px;
-
+   position: static;
 }
 
 .circle {
@@ -18,6 +18,7 @@ body {
   height: 45px;
   margin-left: 650px;
   border-radius: 50px;
+  position: static;
 }
 
 title {
@@ -33,6 +34,7 @@ title {
   margin-top: 5px;
   padding: 20px 0 20px 0;
   text-align: center;
+  position: static;
 }
 
 .titleView {
@@ -41,58 +43,71 @@ title {
   margin: auto;
   text-align: left;
   display: inline-block;
+  position: static;
 }
 
 .postView {
   padding: 1em;
+  position: static;
 }
 
 .centerDiv {
   display: inline-block;
   margin: 1em;
+  position: static;
 }
 
 .centerDiv1{
-    width : 270px;
-    height : 330px;
-    background-color : #000000;
-    border-radius: 20px;
+  width : 266px;
+  height : 270px;
+  border : 2px solid #7b68ee;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  position: static;
 }
 
 .centerDiv2{
-    width : 270px;
-    height : 140px;
-    background-color : #D8D8D8;
-    border-radius: 20px;
+  width : 270px;
+  height : 110px;
+  background-color : #D8D8D8;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: static;
 }
 
 .centerDiv3{
-    width : 270px;
-    height : 330px;
-    background-color : #000000;
-    border-radius: 20px;
-    margin-top: 5%;
+  width : 266px;
+  height : 270px;
+  border : 2px solid #7b68ee;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-top: 5%;
+  position: static;
 }
 
 .centerDiv4{
-    width : 270px;
-    height : 140px;
-    background-color : #D8D8D8;
-    border-radius: 20px;
-    margin-bottom: 0px;
-
+  width : 270px;
+  height : 110px;
+  background-color : #D8D8D8;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-bottom: 0px;
+  position: static;
 }
+
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body{
   background: #f2f2f2;
   font-family: 'Open Sans', sans-serif;
+
 }
 
 .search {
   width: 100%;
   position: relative;
+
 }
 
 .searchTerm {
@@ -104,10 +119,12 @@ body{
   border-radius: 5px;
   outline: none;
   color: #7b68ee;
+
 }
 
 .searchTerm:focus{
   color: #7b68ee;
+
 }
 
 .searchButton {
@@ -122,6 +139,7 @@ body{
   border-radius: 5px;
   cursor: pointer;
   font-size: 20px;
+
 }
 
 .wrap{
@@ -130,4 +148,40 @@ body{
   top: 5%;
   left: 48%;
   transform: translate(-50%, -50%);
+
+}
+
+.tagdiv {
+  width: 266px;
+  height: 30px;
+  border: 2px solid #7373b7;
+}
+
+.infodiv{
+  width: 266px;
+  height: 73px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 2px solid #7373b7;
+}
+
+.namediv {
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 5px;
+  float: left;
+  display: inline-block;
+}
+
+.circlediv{
+  width: 42px;
+  height: 42px;
+  background-color: #202022;
+  border-radius: 42px;
+  text-align: right;
+  display: inline-block;
+  position: relative;
+  left: 30px;
+  top: 15px;
+  color: #ffffff;
 }

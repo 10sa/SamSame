@@ -4,6 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="resources/css/Celebrity.css" type="text/css" />
+
+
     <style type="text/css">
         .my-box {
             border: 1.5px solid #7B68EE;
@@ -11,31 +13,17 @@
         }
     </style>
 
-	<script type="text/javascript" src="resources/js/api-search.js"></script>
-	<script type="text/javascript" src="resources/js/api-profiles.js"></script>
-	<script type="text/javascript" src="resources/js/utils.js"></script>
-	<script type="text/javascript" src="resources/js/profile.js"></script>
-	<script type="text/javascript" src="resources/js/search.js"></script>
-	<script type="text/javascript">
-		window.onload = function(event)
-		{
-			profiles.profiles(function(response) {
-				response.profiles.forEach(function (value, index, array) {
-					profile.drawProfile(value.profilename, value.tags, value.originfollow, value.originprofileuri, value.imageuri, value._id);
-				});
-			});
-		};
-	</script>
+
 </head>
 
 <body>
 
     <div class="bigdiv">
-        <img src="resources/images/logo_1.jpg" width="48px" height="47px" style="margin-left: 410px; margin-top: 12px;">
+        <img src="resources/images/logo_1.jpg" width="48px" height="47px" style="margin-left: 443px; margin-top: 12px;">
         <div class="wrap">
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="" id="searchForm" onkeydown="front_search.searchFormOnKeyDown();">
-                <button type="submit" class="searchButton" onclick="front_search.doSearching();">
+                <input type="text" class="searchTerm" placeholder="">
+                <button type="submit" class="searchButton">
                     <img src="resources/images/search.png" width="22.5px" height="23px">
                 </button>
             </div>
@@ -45,12 +33,334 @@
         </div>
     </div>
 
-    <div class="mainView" id="content-warpper">
+    <div class="mainView">
         <div class="titleView">
-            <h2 class="title">청순미 뿜뿜 셀럽</h2>
+            <h2 class="title">Instargram Celebrity</h2>
         </div>
         <hr style="width: 90%; border-width: 3px; border-color:#7b68ee;">
-    </div>
-</body>
+        <div class="postView">
+                <div class="centerDiv">
+                        <div class="centerDiv1" style="background-image:url(resources/images/eatjin.jpg); background-size: cover;">
+                        </div>
+                        <div class="centerDiv2">
+                            <div class="tagdiv">
+                                #지성적인 #179cm #20대
+                            </div>
+                            <div class="infodiv">
+                                <div class="namediv">
+                                    <span style="font-size: 22px; font-weight: 900">김석진</span>
+                                    <br> 60.2k follower
+                                </div>
+                                <a href="#">
+                                    <div class="circlediv">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                        <div class="centerDiv1" style="background-image:url(resources/images/channnn.jpg); background-size: cover;">
+                        </div>
+                        <div class="centerDiv2">
+                            <div class="tagdiv">
+                                #도도한 #180cm #20대
+                            </div>
+                            <div class="infodiv">
+                                <div class="namediv">
+                                    <span style="font-size: 22px; font-weight: 900">차학연</span>
+                                    <br> 56.8k follower
+                                </div>
+                                <a href="#">
+                                    <div class="circlediv">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                        <div class="centerDiv1" style="background-image:url(resources/images/hanjimin.jpg); background-size: cover;">
+                        </div>
+                        <div class="centerDiv2">
+                            <div class="tagdiv">
+                                #섹시한 #160cm #30대
+                            </div>
+                            <div class="infodiv">
+                                <div class="namediv">
+                                    <span style="font-size: 22px; font-weight: 900">한지민</span>
+                                    <br> 81.1k follower
+                                </div>
+                                <a href="#">
+                                    <div class="circlediv">
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                        <div class="centerDiv3" style="background-image:url(resources/images/jimin.jpg); background-size: cover;">
+                        </div>
+                        <div class="centerDiv4">
+                                <div class="tagdiv">
+                                        #차분한 #173cm #20대
+                                    </div>
+                                    <div class="infodiv">
+                                        <div class="namediv">
+                                            <span style="font-size: 22px; font-weight: 900">박지민</span>
+                                            <br> 61.1k follower
+                                        </div>
+                                        <a href="#">
+                                            <div class="circlediv">
+                                              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                            </div>
+                                        </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/kimdoyeon.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #쿨한 #170cm #20대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">김도연</span>
+                                                    <br> 49.2k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/junghaein.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #귀여운 #178cm #30대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">정해인</span>
+                                                    <br> 39.8k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/jungjinyoung.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #차분한 #178cm #20대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">정진영</span>
+                                                    <br> 41.8k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/kimmingyu.png); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #명랑한 #183cm #20대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">김민규</span>
+                                                    <br> 57.6k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/kimtaetae.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #시크한 #178cm #20대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">김태형</span>
+                                                    <br> 91.8k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/leeubee.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #청순한 #166cm #20대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">이유비</span>
+                                                    <br> 21.9k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/woodohwan.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #밝은 #180cm #20대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">우도환</span>
+                                                    <br> 55.5k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/seojun.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #도도한 #185cm #30대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">박서준</span>
+                                                    <br> 71.6k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/esqup.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #이국적인 #178cm #20대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">최승철</span>
+                                                    <br> 21.7k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/redrin.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #사랑스러운 #157cm #20대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">배주현</span>
+                                                    <br> 71.2k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/ninejo.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #귀여운 #167cm #20대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">이금조</span>
+                                                    <br> 11.9k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centerDiv">
+                            <div class="centerDiv3" style="background-image:url(resources/images/lusi.jpg); background-size: cover;">
+                                </div>
+                                <div class="centerDiv4">
+                                        <div class="tagdiv">
+                                                #차분한 #155cm #10대
+                                            </div>
+                                            <div class="infodiv">
+                                                <div class="namediv">
+                                                    <span style="font-size: 22px; font-weight: 900">강주희</span>
+                                                    <br> 61.1k follower
+                                                </div>
+                                                <a href="#">
+                                                    <div class="circlediv">
+                                                    </div>
+                                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
 
 </html>
