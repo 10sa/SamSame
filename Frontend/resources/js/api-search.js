@@ -14,3 +14,6 @@ search.searching = function (query, callback) {
 	Util.CallAPI(String.format("query={0}", query), "/apis/search/searching", "POST", callback);
 }
 
+search.filterSearching = function (query, filter, callback) {
+	Util.CallAPI(String.format("query={0}&filter={1}", query, JSON.stringify(filter)), "/apis/search/searching", "POST", callback);
+}
