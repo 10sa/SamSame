@@ -12,9 +12,20 @@
     </style>
 
 	<script type="text/javascript" src="resources/js/api-search.js"></script>
+	<script type="text/javascript" src="resources/js/api-profiles.js"></script>
 	<script type="text/javascript" src="resources/js/utils.js"></script>
 	<script type="text/javascript" src="resources/js/profile.js"></script>
 	<script type="text/javascript" src="resources/js/search.js"></script>
+	<script type="text/javascript">
+		window.onload = function(event)
+		{
+			profiles.profiles(function(response) {
+				response.profiles.forEach(function (value, index, array) {
+					profile.drawProfile(value.profilename, value.tags, value.originfollow, value.originprofileuri, value.imageuri, value._id);
+				});
+			});
+		};
+	</script>
 </head>
 
 <body>
