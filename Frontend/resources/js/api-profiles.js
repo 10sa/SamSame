@@ -6,15 +6,15 @@ profiles.profiles = function (callback) {
 	Util.CallAPI("", "/apis/profiles/profiles", "GET", callback);
 }
 
-profiles.favProfile = function (profileId, callback) {
+profiles.addFavProfile = function (profileId, callback) {
 	Util.CallAPI(String.format("profileId={0}", profileId), "/apis/profiles/favProfile", "PUT", callback);
 }
 
-profiles.favProfile = function (callback) {
+profiles.getFavProfile = function (callback) {
 	Util.CallAPI("", "/apis/profiles/favProfile", "GET", callback);
 }
 
-profiles.favProfile = function (profileId, callback) {
+profiles.deleteFavProfile = function (profileId, callback) {
 	Util.CallAPI(String.format("profileId={0}", profileId), "/apis/profiles/favProfile", "DELETE", callback);
 }
 

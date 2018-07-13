@@ -12,7 +12,19 @@
         }
     </style>
 
-
+	<script type="text/javascript" src="resources/js/utils.js"></script>
+	<script type="text/javascript" src="resources/js/api-profiles.js"></script>
+	<script type="text/javascript" src="resources/js/profile.js"></script>
+	<script type="text/javascript" src="resources/js/api-search.js"></script>
+	<script type="text/javascript" src="resources/js/search.js"></script>
+	<script type="text/javascript">
+		window.onload = function()
+		{
+			profiles.getFavProfile(function (response) {
+				profile.drawProfileFromJSON(response);
+			});
+		}
+	</script>
 </head>
 
 <body>
@@ -21,8 +33,8 @@
         <img src="resources/images/logo_1.jpg" width="45px" height="44px" style="margin-left: 443px; margin-top: 12px;">
         <div class="wrap">
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="">
-                <button type="submit" class="searchButton">
+                <input type="text" class="searchTerm" id="searchForm" placeholder="" onkeydown="front_search.searchFormOnKeyDown();">
+                <button type="submit" class="searchButton" onclick="front_search.doSearching();">
                     <img src="resources/images/search.png" width="22.5px" height="23px">
                 </button>
             </div>

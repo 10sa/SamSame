@@ -7,6 +7,13 @@ window.onload = function(event) {
 }
 */
 
+profile.drawProfileFromJSON = function (response)
+{
+	response.profiles.forEach(function (value, index, array) {
+		profile.drawProfile(value.profilename, value.tags, value.originfollow, value.originprofileuri, value.imageuri, value._id);
+	});
+}
+
 profile.drawProfile = function (name, tags, follows, link, image, id)
 {
 	var parent = document.getElementById("content-warpper");
