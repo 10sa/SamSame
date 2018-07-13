@@ -12,22 +12,19 @@
     </style>
 
 	<script type="text/javascript" src="resources/js/api-search.js"></script>
+	<script type="text/javascript" src="resources/js/api-profiles.js"></script>
 	<script type="text/javascript" src="resources/js/utils.js"></script>
 	<script type="text/javascript" src="resources/js/profile.js"></script>
+	<script type="text/javascript" src="resources/js/search.js"></script>
 	<script type="text/javascript">
-		function searchFormOnKeyDown()
+		window.onload = function(event)
 		{
-			if (event.keyCode == 13)
-				doSearching();
-		}
-		
-		function doSearching()
-		{
-			var searchString = document.getElementById("searchForm").value;
-			search.searching(searchString, function(response) {
-				// TO DO:: Display Response Profiles  //
+			profiles.profiles(function(response) {
+				response.profiles.forEach(function (value, index, array) {
+					profile.drawProfile(value.profilename, value.tags, value.originfollow, value.originprofileuri, value.imageuri, value._id);
+				});
 			});
-		}
+		};
 	</script>
 </head>
 
@@ -37,8 +34,8 @@
         <img src="resources/images/logo_1.jpg" width="48px" height="47px" style="margin-left: 410px; margin-top: 12px;">
         <div class="wrap">
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="" id="searchForm" onkeydown="searchFormOnKeyDown();">
-                <button type="submit" class="searchButton" onclick="doSearching();">
+                <input type="text" class="searchTerm" placeholder="" id="searchForm" onkeydown="front_search.searchFormOnKeyDown();">
+                <button type="submit" class="searchButton" onclick="front_search.doSearching();">
                     <img src="resources/images/search.png" width="22.5px" height="23px">
                 </button>
             </div>

@@ -70,6 +70,21 @@
         }
     </style>
     <link rel="stylesheet" href="rangeslider.js-2.3.0/rangeslider.js-2.3.0/rangeslider.css">
+	<script type="text/javascript" src="resources/js/utils.js"></script>
+	<script type="text/javascript" src="resources/js/api-profiles.js"></script>
+	<script type="text/javascript" src="resources/js/profile.js"></script>
+	<script type="text/javascript" src="resources/js/api-search.js"></script>
+	<script type="text/javascript" src="resources/js/search.js"></script>
+	<script type="text/javascript">
+		window.onload = function(event)
+		{
+			profiles.profiles(function(response) {
+				response.profiles.forEach(function (value, index, array) {
+					profile.drawProfile(value.profilename, value.tags, value.originfollow, value.originprofileuri, value.imageuri, value._id);
+				});
+			});
+		};
+	</script>
 </head>
 
 <body>
@@ -78,8 +93,8 @@
         <img src="resources/images/logo_1.jpg" width="48px" height="47px" style="margin-left: 443px; margin-top: 12px;">
         <div class="wrap">
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="">
-                <button type="submit" class="searchButton">
+                <input type="text" class="searchTerm" id="searchForm" placeholder="" onkeydown="front_search.searchFormOnKeyDown(true);">
+                <button type="submit" class="searchButton" onclick="front_search.filterSearching();">
                     <img src="resources/images/search.png" width="22.5px" height="23px">
                 </button>
             </div>
@@ -106,12 +121,12 @@
                                     <div class="finder_cell">
                                         <h4 class="finder_cell_tit">
                                         </h4>
-                                        <ul class="finder_list">
+                                        <ul class="finder_list" id="filter:sex">
                                             <li>
-                                                <input type="checkbox">남자
+                                                <input type="checkbox" id="sex:male">남자
                                             </li>
                                             <li>
-                                                <input type="checkbox">여자
+                                                <input type="checkbox" id="sex:female">여자
                                             </li>
                                         </ul>
                                     </div>
@@ -131,27 +146,27 @@
                                     <div class="finder_cell">
                                         <h4 class="finder_cell_tit">
                                         </h4>
-                                        <ul class="finder_list">
+                                        <ul class="finder_list" id="filter:age">
                                             <li>
-                                                <input type="checkbox">10대
+                                                <input type="checkbox" id="age:10">10대
                                             </li>
                                             <li>
-                                                <input type="checkbox">20대
+                                                <input type="checkbox" id="age:20">20대
                                             </li>
                                             <li>
-                                                <input type="checkbox">30대
+                                                <input type="checkbox" id="age:30">30대
                                             </li>
                                             <li>
-                                                <input type="checkbox">40대
+                                                <input type="checkbox" id="age:40">40대
                                             </li>
                                             <li>
-                                                <input type="checkbox">50대
+                                                <input type="checkbox" id="age:50">50대
                                             </li>
                                             <li>
-                                                <input type="checkbox">60대
+                                                <input type="checkbox" id="age:60">60대
                                             </li>
                                             <li>
-                                                <input type="checkbox">70대 이상
+                                                <input type="checkbox" id="age:70">70대 이상
                                             </li>
                                         </ul>
                                     </div>
@@ -201,15 +216,15 @@
                         <h3 class="finder_tit">
                             <strong>머리길이</strong>
                         </h3>
-                        <ul class="finder_list">
+                        <ul class="finder_list" id="filter:hair">
                             <li>
-                                <input type="checkbox">숏컷
+                                <input type="checkbox" id="hair:short">숏컷
                             </li>
                             <li>
-                                <input type="checkbox">단발
+                                <input type="checkbox" id="hair:normal">단발
                             </li>
                             <li>
-                                <input type="checkbox">장발
+                                <input type="checkbox" id="hair:long">장발
                             </li>
                         </ul>
                     </div>
@@ -220,12 +235,12 @@
 
                             </a>
                         </h3>
-                        <ul class="finder_list">
+                        <ul class="finder_list" id="filter:skin">
                             <li>
-                                <input type="checkbox">웜톤
+                                <input type="checkbox" id="skin:warm">웜톤
                             </li>
                             <li>
-                                <input type="checkbox">쿨톤
+                                <input type="checkbox" id="skin:cool">쿨톤
                             </li>
                         </ul>
                     </div>
@@ -234,45 +249,45 @@
                             <h3 class="finder_tit">
                                 <strong>분위기</strong>
                             </h3>
-                            <ul class="finder_list">
+                            <ul class="finder_list" id="filter:mood">
                                 <li>
-                                    <input type="checkbox">사랑스러운
+                                    <input type="checkbox" id="mood:lovely">사랑스러운
                                 </li>
                                 <li>
-                                    <input type="checkbox">귀여운
+                                    <input type="checkbox" id="mood:cute">귀여운
                                 </li>
                                 <li>
-                                    <input type="checkbox">밝은
+                                    <input type="checkbox" id="mood:light">밝은
                                 </li>
                                 <li>
-                                    <input type="checkbox">청순한
+                                    <input type="checkbox" id="mood:innocence">청순한
                                 </li>
                                 <li>
-                                    <input type="checkbox">명랑한
+                                    <input type="checkbox" id="mood:spectacle">명랑한
                                 </li>
                                 <li>
-                                    <input type="checkbox">쿨한
+                                    <input type="checkbox" id="mood:cool">쿨한
                                 </li>
                                 <li>
-                                    <input type="checkbox">시크한
+                                    <input type="checkbox" id="mood:chic">시크한
                                 </li>
                                 <li>
-                                    <input type="checkbox">섹시한
+                                    <input type="checkbox" id="mood:sexy">섹시한
                                 </li>
                                 <li>
-                                    <input type="checkbox">도도한
+                                    <input type="checkbox" id="mood:upstage">도도한
                                 </li>
                                 <li>
-                                    <input type="checkbox">지성적인
+                                    <input type="checkbox" id="mood:intelligent">지성적인
                                 </li>
                                 <li>
-                                    <input type="checkbox">차분한
+                                    <input type="checkbox" id="mood:tranquil">차분한
                                 </li>
                                 <li>
-                                    <input type="checkbox">몽환적인
+                                    <input type="checkbox" id="mood:dreamy">몽환적인
                                 </li>
                                 <li>
-                                    <input type="checkbox">이국적인
+                                    <input type="checkbox" id="mood:exotic">이국적인
                                 </li>
                             </ul>
 
@@ -284,7 +299,7 @@
         </div>
 
         <div class="centerDiv">
-            <div class="centerDiv1" style="background-image:url(eatjin.jpg); background-size: cover;">
+            <div class="centerDiv1" style="background-image:url(resources/images/eatjin.jpg); background-size: cover;">
             </div>
             <div class="centerDiv2">
                 <div class="tagdiv">
@@ -304,7 +319,7 @@
         </div>
 
         <div class="centerDiv">
-            <div class="centerDiv1" style="background-image:url(channnn.jpg); background-size: cover;">
+            <div class="centerDiv1" style="background-image:url(resources/images/channnn.jpg); background-size: cover;">
             </div>
             <div class="centerDiv2">
                 <div class="tagdiv">
@@ -324,7 +339,7 @@
         </div>
 
         <div class="centerDiv">
-            <div class="centerDiv1" style="background-image:url(hanjimin.jpg); background-size: cover;">
+            <div class="centerDiv1" style="background-image:url(resources/images/hanjimin.jpg); background-size: cover;">
             </div>
             <div class="centerDiv2">
                 <div class="tagdiv">
@@ -345,7 +360,7 @@
         </div>
 
         <div class="centerDiv">
-            <div class="centerDiv3" style="background-image:url(jimin.jpg); background-size: cover;">
+            <div class="centerDiv3" style="background-image:url(resources/images/jimin.jpg); background-size: cover;">
             </div>
             <div class="centerDiv4">
                     <div class="tagdiv">
@@ -365,7 +380,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(kimdoyeon.jpeg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/kimdoyeon.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -385,7 +400,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(junghaein.jpg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/junghaein.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -405,7 +420,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(jungjinyoung.jpg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/jungjinyoung.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -425,7 +440,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(kimmingyu.png); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/kimmingyu.png); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -445,7 +460,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(kimtaetae.jpg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/kimtaetae.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -465,7 +480,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(leeubee.jpg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/leeubee.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -485,7 +500,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(woodohwan.jpg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/woodohwan.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -505,7 +520,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(seojun.jpg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/seojun.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -525,7 +540,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(esqup.jpg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/esqup.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -545,7 +560,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(redrin.jpg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/redrin.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -565,7 +580,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(ninejo.jpg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/ninejo.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">
@@ -585,7 +600,7 @@
         </div>
 
         <div class="centerDiv">
-                <div class="centerDiv3" style="background-image:url(lusi.jpg); background-size: cover;">
+                <div class="centerDiv3" style="background-image:url(resources/images/lusi.jpg); background-size: cover;">
                     </div>
                     <div class="centerDiv4">
                             <div class="tagdiv">

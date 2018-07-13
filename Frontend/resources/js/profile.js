@@ -7,7 +7,7 @@ window.onload = function(event) {
 }
 */
 
-profile.drawProfile = function (name, tags, follows, link, image)
+profile.drawProfile = function (name, tags, follows, link, image, id)
 {
 	var parent = document.getElementById("content-warpper");
 	if (parent == undefined)
@@ -15,6 +15,7 @@ profile.drawProfile = function (name, tags, follows, link, image)
 	
 	var warpperDiv = document.createElement("div");
 	warpperDiv.className = "centerDiv";
+	warpperDiv.id = id;
 	
 	var imageDiv = document.createElement("div");
 	imageDiv.className = "centerDiv1";
