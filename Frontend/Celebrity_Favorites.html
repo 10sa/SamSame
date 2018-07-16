@@ -17,6 +17,7 @@
 	<script type="text/javascript" src="resources/js/profile.js"></script>
 	<script type="text/javascript" src="resources/js/api-search.js"></script>
 	<script type="text/javascript" src="resources/js/search.js"></script>
+  <script type="text/javascript" src="resources/js/mypage.js"></script>
 	<script type="text/javascript">
 		window.onload = function()
 		{
@@ -47,7 +48,7 @@
                 <span class="display_email">Celebrity@sibal.fff</span>
                 <br>
                 <br>
-                <button>마이페이지</button>
+                <button onclick="document.getElementById('mypage').style.display='block'" style="width:auto;" class="mypage">마이페이지</button>
                 <button>로그아웃</button>
             </div>
         </div>
@@ -379,6 +380,25 @@
                     </div>
                 </div>
             </div>
+
+            <div id="mypage" class="modal">
+              <form class="modal-content animate" action="/action_page.php">
+                <div class="imgcontainer">
+                  <h1>My Page</h1>
+                  <span onclick="document.getElementById('mypage').style.display='none'" class="close" title="Close Modal">&times;</span>
+                </div>
+
+                <div class="container">
+                  <span class="name" style=""><b>Username</b></span>
+                  <hr>
+
+                  <span class="email"><b>example@eamil.com</b></span><br><br><br /><br />
+
+                  <button type="button" class="logout">로그아웃</button>
+                  <button type="button" class="secession">회원탈퇴</button>
+                </div>
+              </form>
+          </div>
 </body>
 
 </html>
