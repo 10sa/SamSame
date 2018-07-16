@@ -80,10 +80,15 @@
   <script type="text/javascript">
     window.onload = function(event) {
       profiles.profiles(function(response) {
-        response.profiles.forEach(function(value, index, array) {
-          profile.drawProfile(value.profilename, value.tags, value.originfollow, value.originprofileuri, value.imageuri, value._id);
-        });
+        profile.drawProfileFromJSON(response);
       });
+	  
+	  profiles.getFavProfile(function(response) {
+		response.profiles.forEach(function(value, index, array) {
+			if (profile.displayProfiles.id == value.id);
+				changeImage(value);
+		});
+	  });
     };
   </script>
 </head>

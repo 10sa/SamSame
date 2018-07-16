@@ -1,11 +1,11 @@
 
 var profile = {};
+profile.displayProfiles = [];
 
-/* For Testing.
-window.onload = function(event) {
-	profile.drawProfile("테스트", ["1TAG", "2TAG"], 60000, "#", "resources/images/eatjin.jpg");
+profile.test = function(event) {
+	profile.drawProfile("테스트", ["1TAG", "2TAG"], 60000, "#", "resources/images/eatjin.jpg", 10010);
 }
-*/
+
 
 profile.drawProfileFromJSON = function (response)
 {
@@ -26,7 +26,25 @@ profile.drawProfile = function (name, tags, follows, link, image, id)
 	
 	var imageDiv = document.createElement("div");
 	imageDiv.className = "centerDiv1";
+	imageDiv.style = String.format("background-image:url({0}); background-size: cover;", image);
 	warpperDiv.appendChild(imageDiv);
+	
+	var favButton = document.createElement("img");
+	favButton.src = "resources/images/starline.png";
+	favButton.width = "35";
+	favButton.height = "35";
+	favButton.style = "margin-left: 200px; margin-top: 15px;";
+	favButton.profileId = id;
+	favButton.addEventListener("click", function() {
+		changeImage(this);
+		
+		if (this.isFav)
+			profiles.addFavProfile(this.profileId, function() {});
+		else
+			profiles.deleteFavProfile(this.profileId, function() {});
+	});
+	
+	imageDiv.appendChild(favButton);
 	
 	var contentDiv = document.createElement("div");
 	contentDiv.className = "centerDiv2";
@@ -51,13 +69,12 @@ profile.drawProfile = function (name, tags, follows, link, image, id)
 	nameDiv.className = "namediv";
 	infoDiv.appendChild(nameDiv);
 	
-	var nameH2 = document.createElement("h2");
-	nameH2.innerText = name;
-	nameDiv.appendChild(nameH2);
+	var nameSpan = document.createElement("span");
+	nameSpan.style = "font-size: 22px; font-weight: 900";
+	nameSpan.innerText = name;
+	nameDiv.appendChild(nameSpan);
 	
-	var followsP = document.createElement("p");
-	followsP.innerText = ((follows / 1000).toFixed(1).toString() + "k follower");
-	nameDiv.appendChild(followsP);
+	nameDiv.innerHTML += ("<br>" + ((follows / 1000).toFixed(1).toString() + "k follower"));
 	
 	var circleAnchor = document.createElement("a");
 	circleAnchor.href = link;
@@ -67,5 +84,13 @@ profile.drawProfile = function (name, tags, follows, link, image, id)
 	circleDiv.className = "circlediv";
 	circleAnchor.appendChild(circleDiv);
 	
+	var circleImg = document.createElement("img");
+	circleImg.src = "resources/images/chain.png";
+	circleImg.width = "28";
+	circleImg.height = "28";
+	circleImg.style = "margin-right: 7px; margin-top: 7px;";
+	circleDiv.appendChild(circleImg);
+	
+	this.displayProfiles.push(warpperDiv);
 	parent.appendChild(warpperDiv);
 };
