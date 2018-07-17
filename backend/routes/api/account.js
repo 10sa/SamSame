@@ -58,8 +58,7 @@ router.post('/login', (req, res, next) => {
 					signPromise(resUser).then(token => {
 						res.send(token)
 					}).catch(err => {
-						console.log('Error : ' + err)
-						res.send('Fuck')
+						next(err)
 					})
 				})
 		})

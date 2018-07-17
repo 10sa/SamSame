@@ -6,6 +6,9 @@ const client = require('cheerio-httpcli')
 const User = require('./../../database/models/user')
 const Profile = require('./../../database/models/profile')
 
+/* custom modules */
+const isNullOrUndefined = require('./../func/isNullOrUndefined')
+
 router.get('/profiles', (req, res, next) => {
 	Profile.find({})
 		.then(data => {
@@ -38,14 +41,14 @@ router.put('/favProfile', (req, res, next) => {
 
 	User.findById(req.user.id)
 		.then(data => {
-			console.log(data.favprofiles.indexOf(profileid))
-			if (data.favprofiles.indexOf(profileid) !== null)
+			const favprofiles = data.favprofiles
+			if (favprofiles.indexOf(profileid) !== -1)
 				return res.json({ message: 'Already selected!' })
 
-			let newFav = data.favprofiles.push(profileid)
+			favprofiles.push(profileid)
 
 			User.findByIdAndUpdate(req.user.id, {
-				favprofiles: newFav
+				favprofiles: favprofiles
 			})
 				.then(data => {
 					res.json({ message: 'Success to Update!' })

@@ -127,12 +127,27 @@ router.post('/searching', (req, res, next) => {
 		return tagArr
 	}
 
+	if (req.user === null)
+		return res.json({ message: 'You are not logined!' })
+
 	const query = req.body.query
 	let searchResult = []
 	let tagArray = []
 
-	if (!isNullOrUndefined(query))
+	if (!isNullOrUndefined(query)) {
 		parseQuery(tagArray, query)
+		User.findById(req.user.id)
+			.then(data => {
+				const resSearch = data.recentsearchs
+				if (resSearch.length >= 5)
+					resSearch.shift()
+				resSearch.push(query)
+
+				User.findByIdAndUpdate(req.user.id, {
+					recentsearchs: resSearch
+				}).catch(next)
+			})
+	}
 
 	if (!isNullOrUndefined(req.body.filter)) {
 		const filter = JSON.parse(req.body.filter)
