@@ -9,7 +9,7 @@ const search = require('./api/search')
 /* load middlewares */
 const auth = require('./../middlewares/auth')
 
-router.use(auth)
+router.use('/', auth)
 router.use('/account', account)
 router.use('/profiles', profiles)
 router.use('/search', search)

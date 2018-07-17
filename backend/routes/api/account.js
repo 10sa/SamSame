@@ -10,8 +10,6 @@ const User = require('./../../database/models/user')
 const isNullOrUndefined = require('./../func/isNullOrUndefined')
 
 router.post('/login', (req, res, next) => {
-	console.log(req.user)
-
 	const email = req.body.email
 	const password = req.body.password
 
@@ -28,7 +26,7 @@ router.post('/login', (req, res, next) => {
 				{
 					id: data._id,
 					username: data.username,
-					authlevel: 'User'
+					level: data.level
 				},
 				req.app.get('JWT_SECRET'),
 				{
@@ -82,32 +80,35 @@ router.put('/register', (req, res, next) => {
 	const { username, email, password } = req.body
 	const level = 'User'
 
+	console.log(req.body)
+
 	if (isNullOrUndefined(username, email, password))
 		return res.send('Fail')
 
 	EmailAccount.findOne({ email: email })
 		.then(data => {
 			if (data !== null)
-				return res.end('Fuck')
+				return res.send('Fuck')
 
-			User.create({ username: username, email: email, level: level })
-				.then(data => {
-					if (data == null)
-						return res.send('Error!')
+			let user = new User({
+				username: username,
+				email: email,
+				level: level
+			})
+			user.save()
 
-					let eac = new EmailAccount(
-						{
-							userid: data._id,
-							email: email,
-							password: password
-						})
-					eac.save()
-					res.send('Hello!')
-				})
+			let eac = new EmailAccount({
+				userid: user._id,
+				email: email,
+				password: password
+			})
+			eac.save()
 		})
 		.catch(err => {
 			next(err)
 		})
+
+	res.json({ message: 'Success to register!' })
 })
 
 router.get('/userProfile', (req, res, next) => {
@@ -133,6 +134,14 @@ router.post('/userProfile', (req, res, next) => {
 	}, (err, res) => {
 		if (err) next(err)
 	})
+
+	EmailAccount.findOneAndUpdate({ userid: req.user.id },
+		{
+			email: email
+		},
+		(err, res) => {
+			if (err) next(err)
+		})
 
 	res.json({ message: 'Success to update user' })
 })

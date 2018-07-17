@@ -14,7 +14,7 @@ const routes = require('./routes/index')
 
 /* express setting */
 app.use(morgan('tiny'))
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extend: false }))
 
 /* routing */
 app.use('/', routes)

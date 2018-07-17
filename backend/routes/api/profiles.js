@@ -1,14 +1,12 @@
 /* load express & general modules */
 const router = require('express').Router()
+const client = require('cheerio-httpcli')
 
 /* load mongoose models */
 const User = require('./../../database/models/user')
 const Profile = require('./../../database/models/profile')
 
-/* load custom modules & functions */
-const isNullOrUndefined = require('./../func/isNullOrUndefined')
-
-router.get('/profiles', (req, res) => {
+router.get('/profiles', (req, res, next) => {
 	Profile.find({})
 		.then(data => {
 			res.json({ profiles: data })
@@ -16,9 +14,9 @@ router.get('/profiles', (req, res) => {
 		.catch(err => next(err))
 })
 
-router.get('/favProfile', (req, res) => {
+router.get('/favProfile', (req, res, next) => {
 	if (req.user === null)
-		res.json({ message: 'You are not logined!' })
+		return res.json({ message: 'You are not logined!' })
 
 	let result = []
 
@@ -32,9 +30,9 @@ router.get('/favProfile', (req, res) => {
 		.catch(err => next(err))
 })
 
-router.put('/favProfile', (req, res) => {
+router.put('/favProfile', (req, res, next) => {
 	if (req.user === null)
-		res.json({ message: 'You are not logined!' })
+		return res.json({ message: 'You are not logined!' })
 
 	const { profileid } = req.body
 
@@ -56,7 +54,7 @@ router.put('/favProfile', (req, res) => {
 		})
 })
 
-router.delete('/favProfile', (req, res) => {
+router.delete('/favProfile', (req, res, next) => {
 	if (req.user === null)
 		res.json({ message: 'You are not logined!' })
 
@@ -80,10 +78,41 @@ router.delete('/favProfile', (req, res) => {
 		})
 })
 
-router.put('/registerProfile', (req, res) => {
-	if (req.user !== 'Admin')
+router.put('/registerProfile', (req, res, next) => {
+	if (req.user === null) {
+		return res.json({ message: 'Could not find User!' })
+	}
+
+	if (req.user.level !== 'Admin') {
+		console.log(req.user)
 		return res.json({ message: 'No Auth to access' })
-	res.json({ message: 'Not Available' })
+	}
+
+	const { profileUrl, tags } = req.body
+	const tagArr = JSON.parse(tags)
+
+	client.fetch(profileUrl)
+		.then(result => {
+			const html = result.$.html()
+			const imageuri = html.match(/(?<="profile_pic_url":").*?(?=")/)[0]
+			const profilename = html.match(/(?<="username":").*?(?=")/)[0]
+			const originfollow = html.match(/(?<="edge_followed_by":{"count":).*?(?=})/)[0]
+			console.log(typeof tagArr)
+
+			let newProfile = new Profile({
+				profilename: profilename,
+				imageuri: imageuri,
+				originfollow: originfollow,
+				originprofileuri: profileUrl,
+				tags: tagArr
+			})
+
+			newProfile.save()
+			return res.json({ message: 'Success to insert!' })
+		})
+		.catch(err => {
+			next(err)
+		})
 })
 
 module.exports = router
