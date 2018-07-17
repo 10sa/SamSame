@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="resources/css/register.css" type="text/css" />
+  <script type="text/javascript" src="resources/js/api-account.js"></script>
+  <script type="text/javascript" src="resources/js/utils.js"></script>
+  <script type="text/javascript">
+	function onSubmitRegister()
+	{
+		var password = document.getElementById("password").value;
+		var Repassword = document.getElementById("Repassword").value;
+		var email = document.getElementById("email").value;
+		if (password != "" && Repassword != "" && email != "")
+		{
+			if (password == Repassword)
+				account.register(, password, function(response) {document.location.href = ""} ); // redirect to somewhere?
+		}
+		else
+		{
+			// when something is empty
+		}
+	}
+  </script>
+  <title>Register</title>
+</head>
+<body>
+  <div class="back">
+    <img src="resources/images/registerback.png" height="800px" />
+  </div>
+  <div class="register">
+    <h1>Register</h1>
+    <span>간편한 회원가입으로 서비스를 이용하세요.</span><br /><br /><br />
+    <form>
+      <span>Name</span><br />
+      <input type="text" id="name"><br /><br /><br />
+      <span>Email Address</span><br />
+      <input type="email" id="email"><br /><br /><br />
+      <span>Password</span><br />
+      <input type="password" id="password"/><br /><br /><br />
+      <span>Retype Password</span><br />
+      <input type="password" id="Repassword"/><br /><br /><br /><br />
+      <a href="login.html">이미 회원이신가요?</a><br />
+    <div class="col-md-3 col-sm-3 col-xs-6" onclick="onSubmitRegister()"> <a href="#" class="btn btn-sm animated-button victoria-one">Register</a> </div>
+    </form>
+  </div>
+</body>
+</html>

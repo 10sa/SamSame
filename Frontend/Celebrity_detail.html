@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="resources/css/detail.css" type="text/css" />
+  <style type="text/css">
+    .my-box {
+      border: 1.5px solid #7B68EE;
+      padding: 10px;
+    }
+
+    .slidecontainer {
+      width: 70%;
+
+    }
+
+
+
+    .slider {
+      -webkit-appearance: none;
+
+      appearance: none;
+      width: 100%;
+
+      height: 25px;
+
+      background: #d3d3d3;
+
+      outline: none;
+
+      opacity: 0.7;
+
+      -webkit-transition: .2s;
+
+      transition: opacity .2s;
+    }
+
+
+
+    .slider:hover {
+      opacity: 1;
+
+    }
+
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+
+      appearance: none;
+      width: 25px;
+
+      height: 25px;
+
+      background: #7B68EE;
+
+      cursor: pointer;
+
+    }
+
+    .slider::-moz-range-thumb {
+      width: 25px;
+
+      height: 25px;
+
+      background: #7B68EE;
+
+      cursor: pointer;
+
+    }
+  </style>
+  <link rel="stylesheet" href="rangeslider.js-2.3.0/rangeslider.js-2.3.0/rangeslider.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="resources/js/utils.js"></script>
+  <script type="text/javascript" src="resources/js/api-profiles.js"></script>
+  <script type="text/javascript" src="resources/js/profile.js"></script>
+  <script type="text/javascript" src="resources/js/api-search.js"></script>
+  <script type="text/javascript" src="resources/js/search.js"></script>
+  <script type="text/javascript" src="resources/js/mypage.js"></script>
+  <script type="text/javascript">
+    window.onload = function(event) {
+      profiles.profiles(function(response) {
+        profile.drawProfileFromJSON(response);
+      });
+	  
+	  profiles.getFavProfile(function(response) {
+		response.profiles.forEach(function(value, index, array) {
+			if (profile.displayProfiles.id == value.id);
+				changeImage(value);
+		});
+	  });
+    };
+  </script>
+</head>
+
+<body>
+
+  <div class="bigdiv">
+    <img src="resources/images/logo_1.jpg" width="45px" height="44px" style="margin-left: 443px; margin-top: 12px;">
+    <div class="wrap">
+      <div class="search">
+        <input type="text" class="searchTerm" placeholder="">
+        <button type="submit" class="searchButton">
+                    <img src="resources/images/search.png" width="22.5px" height="23px">
+                </button>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <img src="resources/images/person.png" width="33px" height="33px" style="margin-top: 6.5px; margin-left: 6.5px;">
+      <div class="dropdown-content">
+        <span class="display_name">셀럽파이브</span>
+        <span class="display_email">Celebrity@sibal.fff</span>
+        <br>
+        <br>
+        <button onclick="document.getElementById('mypage').style.display='block'" style="width:auto;" class="mypage">마이페이지</button>
+        <button>로그아웃</button>
+      </div>
+    </div>
+
+    <div class="mainView">
+      <div class="postView">
+        <div class="centertag" style="border: 1px solid #7B68EE; float: left; height: 251px; width: 1330px;">
+          <div id="_filter" class="finder">
+
+
+            <div class="finder_col finder_fix _filter_row _category_filter">
+
+              <h3 class="finder_tit">
+                              <strong>성별</strong>
+                          </h3>
+              <div class="finder_row">
+                <div id="_categorySummaryFilterArea" class="scroll_search">
+                  <div class="scrollbar_content">
+                    <div class="finder_cell">
+                      <h4 class="finder_cell_tit">
+                                          </h4>
+                      <ul class="finder_list">
+                        <li>
+                          <input type="checkbox">남자
+                        </li>
+                        <li>
+                          <input type="checkbox">여자
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="finder_col finder_fix _filter_row _category_filter">
+
+              <h3 class="finder_tit">
+                              <strong>연령대</strong>
+                          </h3>
+              <div class="finder_row">
+                <div id="_categorySummaryFilterArea" class="scroll_search">
+                  <div class="scrollbar_content">
+                    <div class="finder_cell">
+                      <h4 class="finder_cell_tit">
+                                          </h4>
+                      <ul class="finder_list">
+                        <li>
+                          <input type="checkbox">10대
+                        </li>
+                        <li>
+                          <input type="checkbox">20대
+                        </li>
+                        <li>
+                          <input type="checkbox">30대
+                        </li>
+                        <li>
+                          <input type="checkbox">40대
+                        </li>
+                        <li>
+                          <input type="checkbox">50대
+                        </li>
+                        <li>
+                          <input type="checkbox">60대
+                        </li>
+                        <li>
+                          <input type="checkbox">70대 이상
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="finder_col finder_fix _brand_filter _filter_row">
+              <h3 class="finder_tit">
+                              <strong>키</strong>
+                          </h3>
+              <div class="finder_row">
+                <ul class="finder_tit_list">
+                  <li class="slidecontainer">
+                    <input type="range" min="130" max="200" class="slider" id="slider">
+                  </li>
+                  <li>
+                    <div id="demo"></div>
+                  </li>
+                </ul>
+                <div class="finder_tit_sort _filter_sort">
+                  <a href="#" class="sort_btn on" data-sort-type="count">
+                                      <span class="ico_check"></span>
+                                  </a>
+
+                  <a href="#" class="sort_btn" data-sort-type="name">
+                                      <span class="ico_check"></span>
+                                  </a>
+
+                </div>
+                <div class="scroll_search _summary_result">
+                  <div class="scrollbar_content">
+                    <div class="finder_cell">
+                      <ul class="finder_list _summary_ul">
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="finder_col _filter_row">
+
+              <h3 class="finder_tit">
+                              <strong>머리길이</strong>
+                          </h3>
+              <ul class="finder_list">
+                <li>
+                  <input type="checkbox">숏컷
+                </li>
+                <li>
+                  <input type="checkbox">단발
+                </li>
+                <li>
+                  <input type="checkbox">장발
+                </li>
+              </ul>
+            </div>
+            <div class="finder_col _filter_row">
+              <h3 class="finder_tit">
+                              <strong>피부톤</strong>
+                              <a href="#" class="btn_extend _filter_more" style="display:none" data-nclick-area="rcc*F">
+
+                              </a>
+                          </h3>
+              <ul class="finder_list">
+                <li>
+                  <input type="checkbox">웜톤
+                </li>
+                <li>
+                  <input type="checkbox">쿨톤
+                </li>
+              </ul>
+            </div>
+            <div class="finder_col finder_etc">
+              <div class="finder_etc_inner">
+                <h3 class="finder_tit">
+                                  <strong>분위기</strong>
+                              </h3>
+                <ul class="finder_list">
+                  <li>
+                    <input type="checkbox">사랑스러운
+                  </li>
+                  <li>
+                    <input type="checkbox">귀여운
+                  </li>
+                  <li>
+                    <input type="checkbox">밝은
+                  </li>
+                  <li>
+                    <input type="checkbox">청순한
+                  </li>
+                  <li>
+                    <input type="checkbox">명랑한
+                  </li>
+                  <li>
+                    <input type="checkbox">쿨한
+                  </li>
+                  <li>
+                    <input type="checkbox">시크한
+                  </li>
+                  <li>
+                    <input type="checkbox">섹시한
+                  </li>
+                  <li>
+                    <input type="checkbox">도도한
+                  </li>
+                  <li>
+                    <input type="checkbox">지성적인
+                  </li>
+                  <li>
+                    <input type="checkbox">차분한
+                  </li>
+                  <li>
+                    <input type="checkbox">몽환적인
+                  </li>
+                  <li>
+                    <input type="checkbox">이국적인
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+          <a href="#" id="_filter_expand" class="finder_more" style="display:none" data-nclick-area="rcc">탐색도구 펼치기</a>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv1" style="background-image:url(resources/images/eatjin.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv2">
+          <div class="tagdiv">
+            <p>#지성적인 #179cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">김석진</span>
+              <br> 60.2k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv1" style="background-image:url(resources/images/channnn.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv2">
+          <div class="tagdiv">
+            <p>#도도한 #180cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">차학연</span>
+              <br> 56.8k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv1" style="background-image:url(resources/images/hanjimin.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv2">
+          <div class="tagdiv">
+            <p>#섹시한 #160cm #30대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">한지민</span>
+              <br> 81.1k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/jimin.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#차분한 #173cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">박지민</span>
+              <br> 61.1k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/kimdoyeon.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#쿨한 #170cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">김도연</span>
+              <br> 49.2k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/junghaein.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#귀여운 #178cm #30대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">정해인</span>
+              <br> 39.8k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/jungjinyoung.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#차분한 #178cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">정진영</span>
+              <br> 41.8k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/kimmingyu.png); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#명랑한 #183cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">김민규</span>
+              <br> 57.6k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/kimtaetae.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#시크한 #178cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">김태형</span>
+              <br> 91.8k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/leeubee.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#청순한 #166cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">이유비</span>
+              <br> 21.9k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/woodohwan.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#밝은 #180cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">우도환</span>
+              <br> 55.5k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/seojun.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#도도한 #185cm #30대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">박서준</span>
+              <br> 71.6k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/esqup.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#이국적인 #178cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">최승철</span>
+              <br> 21.7k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/redrin.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#사랑스러운 #157cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">배주현</span>
+              <br> 71.2k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/ninejo.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#귀여운 #167cm #20대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">이금조</span>
+              <br> 11.9k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="centerDiv">
+        <div class="centerDiv3" style="background-image:url(resources/images/lusi.jpg); background-size: cover;">
+          <img src="resources/images/starline.png" width="35px" height="35px" style="margin-left: 200px; margin-top: 15px;" onclick="changeImage(this)">
+        </div>
+        <div class="centerDiv4">
+          <div class="tagdiv">
+            <p>#차분한 #155cm #10대</p>
+          </div>
+          <div class="infodiv">
+            <div class="namediv">
+              <span style="font-size: 22px; font-weight: 900">강주희</span>
+              <br> 61.1k follower
+            </div>
+            <a href="#">
+              <div class="circlediv">
+                <img src="resources/images/chain.png" width="28px" height="28px" style="margin-right: 7px; margin-top: 7px;">;
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mypage" class="modal">
+      <form class="modal-content animate" action="/action_page.php">
+        <div class="imgcontainer">
+          <h1>My Page</h1>
+          <span onclick="document.getElementById('mypage').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+
+        <div class="container">
+          <span class="name" style=""><b>Username</b></span>
+          <hr>
+
+          <span class="email"><b>example@eamil.com</b></span><br><br><br /><br />
+
+          <button type="button" class="logout">로그아웃</button>
+          <button type="button" class="secession">회원탈퇴</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      var slider = document.getElementById("slider");
+      var output = document.getElementById("demo");
+      output.innerHTML = slider.value;
+
+      slider.oninput = function() {
+        output.innerHTML = this.value;
+      }
+
+      function changeImage(element) {
+        var oldImage = element.getAttribute('src');
+        var star = 'resources/images/star.png';
+        var non_star = 'resources/images/starline.png';
+
+        if (oldImage === star) {
+          element.setAttribute('src', non_star);
+        } else {
+          element.setAttribute('src', star);
+        }
+      }
+
+      var slider = document.getElementById("slider");
+      var output = document.getElementById("demo");
+      output.innerHTML = slider.value;
+      slider.oninput = function() {
+        output.innerHTML = this.value;
+      }
+    </script>
+
+</body>
+
+</html>

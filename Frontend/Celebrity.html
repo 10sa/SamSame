@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="resources/css/Celebrity.css" type="text/css" />
+
+  <style type="text/css">
+    .my-box {
+      border: 1.5px solid #7B68EE;
+      padding: 10px;
+    }
+  </style>
+
+  <script type="text/javascript" src="resources/js/api-search.js"></script>
+  <script type="text/javascript" src="resources/js/api-profiles.js"></script>
+  <script type="text/javascript" src="resources/js/utils.js"></script>
+  <script type="text/javascript" src="resources/js/profile.js"></script>
+  <script type="text/javascript" src="resources/js/search.js"></script>
+  <script type="text/javascript" src="resources/js/mypage.js"></script>
+  <script type="text/javascript">
+    window.onload = function(event) {
+      profiles.profiles(function(response) {
+        profile.drawProfileFromJSON(response);
+      });
+	  
+	  profiles.getFavProfile(function(response) {
+		response.profiles.forEach(function(value, index, array) {
+			if (profile.displayProfiles.id == value.id);
+				changeImage(value);
+		});
+	  });
+    };
+  </script>
+</head>
+
+<body>
+
+  <div class="bigdiv">
+    <img src="resources/images/logo_1.jpg" width="45px" height="44px" style="margin-left: 443px; margin-top: 12px;">
+    <div class="wrap">
+      <div class="search">
+        <input type="text" class="searchTerm" placeholder="" id="searchForm" onkeydown="front_search.searchFormOnKeyDown();">
+        <button type="submit" class="searchButton" onclick="front_search.doSearching();">
+                    <img src="resources/images/search.png" width="22.5px" height="23px">
+                </button>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <img src="resources/images/person.png" width="33px" height="33px" style="margin-top: 6.5px; margin-left: 6.5px;">
+      <div class="dropdown-content">
+        <span class="display_name">셀럽파이브</span>
+        <span class="display_email">Celebrity@sibal.fff</span>
+        <br>
+        <br>
+        <button onclick="document.getElementById('mypage').style.display='block'" style="width:auto;" class="mypage">마이페이지</button>
+        <button>로그아웃</button>
+      </div>
+    </div>
+
+
+    <div class="mainView">
+      <div class="titleView">
+        <h2 class="title">Instargram Celebrity</h2>
+      </div>
+      <hr style="width: 90%; border-width: 3px; border-color:#7b68ee;">
+      <div class="postView" id="content-warpper">
+      </div>
+      <div id="mypage" class="modal">
+        <form class="modal-content animate" action="/action_page.php">
+          <div class="imgcontainer">
+            <h1>My Page</h1>
+            <span onclick="document.getElementById('mypage').style.display='none'" class="close" title="Close Modal">&times;</span>
+          </div>
+
+          <div class="container">
+            <span class="name" style=""><b>Username</b></span>
+            <hr>
+
+            <span class="email"><b>example@eamil.com</b></span><br><br><br /><br />
+
+            <button type="button" class="logout">로그아웃</button>
+            <button type="button" class="secession">회원탈퇴</button>
+          </div>
+        </form>
+      </div>
+</body>
+
+<script> /*
+  var slider = document.getElementById("slider");
+  var output = document.getElementById("demo");
+  output.innerHTML = slider.value;
+
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+  } */
+
+  function changeImage(element) {
+    var oldImage = element.getAttribute('src');
+    var star = 'resources/images/star.png';
+    var non_star = 'resources/images/starline.png';
+
+    if (oldImage === star) {
+      element.setAttribute('src', non_star);
+	  element.isFav = false;
+    } else {
+      element.setAttribute('src', star);
+	  element.isFav = true;
+    }
+  }
+</script>
+
+</html>
