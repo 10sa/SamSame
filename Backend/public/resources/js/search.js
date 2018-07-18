@@ -34,11 +34,12 @@ front_search.filterSearching = function()
 	
 	addFilterFromNode(document.getElementById("filter:sex"));
 	addFilterFromNode(document.getElementById("filter:age"));
+	addFilterFromNode(document.getElementById("filter:height"));
 	addFilterFromNode(document.getElementById("filter:hair"));
 	addFilterFromNode(document.getElementById("filter:skin"));
 	addFilterFromNode(document.getElementById("filter:mood"));
-	filterValue["body:height"] = document.getElementById("slider").value;
 	
+	console.log(filterValue);
 	search.filterSearching(searchString, filterValue, function(response) {
 		
 	});
