@@ -238,6 +238,17 @@ button {
     width: 100%;
 }
 
+.favorite {
+    font-size: 15px;
+	  background-color: #FFBB00;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 2px solid #FFBB00;
+    cursor: pointer;
+    width: 100%;
+}
+
 .secession{
     font-size: 15px;
   	background-color: #f44336;
