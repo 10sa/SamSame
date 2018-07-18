@@ -43,11 +43,15 @@ router.post('/login', (req, res, next) => {
 		})
 	}
 
-	if (req.user !== null)
+	if (req.user !== null) {
+		res.header(400)
 		return res.json({ message: 'Already logined!' })
+	}
 
-	if (isNullOrUndefined(email, password))
+	if (isNullOrUndefined(email, password)) {
+		res.header(400)
 		return res.json({ message: 'Wrong Input!' })
+	}
 
 	EmailAccount.findOne({ email: email, password: password })
 		.then(data => {
@@ -93,7 +97,7 @@ router.put('/register', (req, res, next) => {
 		.then(data => {
 			if (data !== null) 
 				throw new Error('!')
-				
+
 			let user = new User({
 				username: username,
 				email: email,
