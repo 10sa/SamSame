@@ -1,3 +1,4 @@
+'use strict'
 const dotenv = require('dotenv').config()
 const dbconfig = require('./database/connect')
 

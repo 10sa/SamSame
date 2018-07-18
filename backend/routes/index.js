@@ -1,3 +1,4 @@
+'use strict'
 /* load express modules */
 const router = require('express').Router()
 

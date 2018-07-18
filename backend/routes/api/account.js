@@ -1,3 +1,4 @@
+'use strict'
 /* load express & general modules */
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
@@ -30,7 +31,7 @@ router.post('/login', (req, res, next) => {
 				},
 				req.app.get('JWT_SECRET'),
 				{
-					expiresIn: '15m',
+					expiresIn: '45m',
 					issuer: 'celebrity.org',
 					subject: 'userinfo'
 				},

@@ -1,3 +1,4 @@
+'use strict'
 /* basic modules */
 const http = require('http')
 const express = require('express')

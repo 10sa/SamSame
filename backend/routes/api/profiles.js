@@ -1,3 +1,4 @@
+'use strict'
 /* load express & general modules */
 const router = require('express').Router()
 const client = require('cheerio-httpcli')
