@@ -91,9 +91,9 @@ router.put('/register', (req, res, next) => {
 
 	EmailAccount.findOne({ email: email })
 		.then(data => {
-			if (data !== null)
-				return next(new Error('!'))
-
+			if (data !== null) 
+				throw new Error('!')
+				
 			let user = new User({
 				username: username,
 				email: email,
@@ -107,11 +107,11 @@ router.put('/register', (req, res, next) => {
 				password: password
 			})
 			eac.save()
+
+			res.header(200)
+			res.end()
 		})
 		.catch(next)
-
-	res.header(200)
-	res.end()
 })
 
 router.get('/userProfile', (req, res, next) => {
@@ -134,7 +134,7 @@ router.post('/userProfile', (req, res, next) => {
 	}
 
 	const { email, username } = req.body
-	const key = email 
+	const key = email
 	const value = username
 
 	User.findByIdAndUpdate(req.user.id, {
