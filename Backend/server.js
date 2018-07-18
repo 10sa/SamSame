@@ -12,6 +12,8 @@ const morgan = require('morgan')
 require('./config')(app)
 const error = require('./error/index')
 const apis = require('./routes/apis/index')
+const views = require('./routes/views/index')
+
 /* express setting */
 app.use(morgan('tiny'))
 app.use(bodyParser.urlencoded({ extend: false }))
