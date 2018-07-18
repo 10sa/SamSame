@@ -14,7 +14,10 @@
 		var password = document.getElementById("password").value;
 		
 		if (email != "" && password != "")
-			account.login(email, password, function(response) { window.location.href = "Celebrity.html"}); // redirect to somewhere
+			account.login(email, password, function(response) {
+        document.cookie = ''
+        window.location.href = "Celebrity.html"
+      }); // redirect to somewhere
 		else
 		{
 			// when something is empty
@@ -30,13 +33,13 @@
   <div class="login">
     <h1>Login</h1>
     <span>로그인 후 서비스를 이용할 수 있습니다.</span><br /><br /><br />
-    <form>
+    <form method="POST" action="/apis/account/login" enctype="application/x-www-form-urlencoded">
       <span>Email Address</span><br />
-      <input type="email" id="email" /><br /><br /><br />
+      <input type="email" id="email" name="email"/><br /><br /><br />
       <span>Password</span><br />
-      <input type="password" id="password" /><br /><br /><br /><br />
+      <input type="password" id="password" name="password"/><br /><br /><br /><br />
       <a href="register.html">회원가입이 필요하신가요?</a><br />
-      <div class="col-md-3 col-sm-3 col-xs-6" onclick="onSubmitLogin();"> <a href="#" class="btn btn-sm animated-button loginbutton">Login</a> </div>
+      <input type="submit" value="로그인">
     </form>
   </div>
 </body>

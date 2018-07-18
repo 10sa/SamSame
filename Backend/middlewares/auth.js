@@ -5,7 +5,7 @@ module.exports = function (req, res, next) {
     req.user = null
 
     /* extract jwt from bearer token */
-    const authorization = req.headers.authorization
+    const authorization = req.cookies.authorization
 
     if (authorization === undefined) return next()
 

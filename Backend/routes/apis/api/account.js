@@ -13,6 +13,9 @@ const isNullOrUndefined = require('./../func/isNullOrUndefined')
 router.post('/login', (req, res, next) => {
 	const email = req.body.email
 	const password = req.body.password
+	console.log(email, password)
+
+	const redirect_url = '/'
 
 	const userPromise = function (data) {
 		return User.findById(data.userid)
@@ -21,7 +24,7 @@ router.post('/login', (req, res, next) => {
 	const signPromise = function (data) {
 		return new Promise((resolve, reject) => {
 			if (data === null)
-				return res.json({ message: 'Could not find User!' })
+				return res.redirect('/')
 
 			jwt.sign(
 				{
@@ -44,26 +47,30 @@ router.post('/login', (req, res, next) => {
 	}
 
 	if (req.user !== null) {
-		res.header(400)
-		return res.json({ message: 'Already logined!' })
+		return res.redirect('/')
 	}
 
 	if (isNullOrUndefined(email, password)) {
-		res.header(400)
-		return res.json({ message: 'Wrong Input!' })
+		return res.redirect('/')
 	}
 
 	EmailAccount.findOne({ email: email, password: password })
 		.then(data => {
-			if (data === null)
-				return res.send('Not Found')
+			if (data === null) {
+				return res.redirect('/')
+			}
 
 			User.findById(data.userid)
 				.then(resUser => {
 					signPromise(resUser).then(token => {
-						req.headers.authorization = 'bearer ' + token
-						res.header(200)
-						res.end()
+						const bearer_token = 'bearer ' + token
+
+						res.header(300)
+						res.cookie('authorization', bearer_token, {
+							maxAge: 7000,
+							httpOnly: true
+						})
+						res.redirect(redirect_url)
 					}).catch(next)
 				})
 		})
@@ -73,7 +80,7 @@ router.get('/logout', (req, res, next) => {
 	if (req.user === null)
 		return res.json({ message: 'You are not logined!' })
 
-	req.headers.authorization = null
+	req.clearCookie('authorization')
 	res.json({ message: 'Success to logout' })
 })
 
@@ -86,8 +93,6 @@ router.put('/register', (req, res, next) => {
 	const { username, email, password } = req.body
 	const level = 'User'
 
-	console.log(req.body)
-
 	if (isNullOrUndefined(username, email, password)) {
 		res.header(400)
 		return res.send('Fail')
@@ -95,7 +100,7 @@ router.put('/register', (req, res, next) => {
 
 	EmailAccount.findOne({ email: email })
 		.then(data => {
-			if (data !== null) 
+			if (data !== null)
 				throw new Error('!')
 
 			let user = new User({

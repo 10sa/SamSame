@@ -4,6 +4,7 @@ const http = require('http')
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const path = require('path')
 
 /* dev modules */
@@ -19,6 +20,7 @@ const views = require('./routes/views/index')
 app.use(express.static(app.get('FRONT_PATH')))
 app.use(morgan('tiny'))
 app.use(bodyParser.urlencoded({ extend: false }))
+app.use(cookieParser('weawefawefawefawef'))
 
 /* routing */
 app.use('/', views)
