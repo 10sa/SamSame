@@ -10,8 +10,8 @@ account.logout = function (callback) {
 	Util.CallAPI("", "/apis/account/logout", "GET", callback);
 }
 
-account.register = function (email, password, callback) {
-	Util.CallAPI(String.format("email={0}&password={1}", email, password), "/apis/account/register", "PUT", callback);
+account.register = function (email, password, username, callback) {
+	Util.CallAPI(String.format("email={0}&password={1}&username={2}", email, password, username), "/apis/account/register", "PUT", callback);
 }
 
 account.userProfile = function (callback) {
