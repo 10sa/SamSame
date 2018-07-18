@@ -10,7 +10,7 @@ profile.test = function(event) {
 profile.drawProfileFromJSON = function (response)
 {
 	response.profiles.forEach(function (value, index, array) {
-		profile.drawProfile(value.profilename, value.tags, value.originfollow, value.originprofileuri, value.imageuri, value._id);
+		profile.drawProfile(value.profilename, value.tags, value.originfollow, value.originprofileuri, value.imageuri, value.id);
 	});
 }
 
@@ -49,7 +49,7 @@ profile.drawProfile = function (name, tags, follows, link, image, id)
 	favButton.profileId = id;
 	favButton.addEventListener("click", function() {
 		changeImage(this);
-		
+
 		if (this.isFav)
 			profiles.addFavProfile(this.profileId, function() {});
 		else
