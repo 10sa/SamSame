@@ -16,7 +16,7 @@
 		if (password != "" && Repassword != "" && email != "")
 		{
 			if (password == Repassword)
-				account.register(, password, function(response) {document.location.href = ""} ); // redirect to somewhere?
+				account.register(email, password, function(response) {document.location.href = ""} ); // redirect to somewhere?
 		}
 		else
 		{
