@@ -14,6 +14,18 @@ profile.drawProfileFromJSON = function (response)
 	});
 }
 
+profile.clearProfiles = function()
+{
+	var parent = document.getElementById("content-warpper");
+	if (parent == undefined)
+		return;
+	
+	var profiles = document.getElementsByClassName("centerDiv");
+	profiles.forEach(function (value, index, array) {
+		parent.removeChild(value);
+	});
+}
+
 profile.drawProfile = function (name, tags, follows, link, image, id)
 {
 	var parent = document.getElementById("content-warpper");

@@ -16,8 +16,9 @@ front_search.searchFormOnKeyDown = function(isFilter)
 front_search.doSearching = function()
 {
 	var searchString = document.getElementById("searchForm").value;
+	profile.clearProfiles();
 	search.searching(searchString, function(response) {
-		// TO DO:: Display Response Profiles  //
+		profile.drawProfileFromJSON(response);
 	});
 }
 
