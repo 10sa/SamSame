@@ -14,14 +14,14 @@ router.get('/', (req, res) => {
 })
 
 router.get('/register', (req, res) => {
-    if (req.user)
+    if (req.user === null)
         res.sendFile(path.join(front_path, 'register.html'))
     else 
         res.redirect('/')
 })
 
 router.get('/login', (req, res) => {
-    if (req.user)
+    if (req.user === null)
         res.sendFile(path.join(front_path, 'login.html'))
     else 
         res.redirect('/')
