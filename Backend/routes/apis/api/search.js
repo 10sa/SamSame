@@ -25,23 +25,6 @@ router.get('/recentSearch', (req, res, next) => {
 		})
 })
 
-router.post('/querySearchString', (req, res, next) => {
-	const query = req.body.query
-	let searchResult = []
-
-	if (isNullOrUndefined(query) || query === "")
-		return res.json({ searchResult: searchResult })
-
-	Profile.find({ profilename: `%${query}%` }).limit(5)
-		.then(data => {
-			searchResult = data
-			return res.json({ searchResult: searchResult })
-		})
-		.catch(err => {
-			if (err) next(err)
-		})
-})
-
 router.post('/searching', (req, res, next) => {
 	function parseAge(tagArr, ages) {
 		for (let i = 0; i < ages.length; i++) {
@@ -130,12 +113,16 @@ router.post('/searching', (req, res, next) => {
 		return tagArr
 	}
 
-	if (req.user === null)
+	if (req.user === null) {
+		console.log(1)
 		return res.json({ message: 'You are not logined!' })
+	}
 
 	const query = req.body.query
 	let searchResult = []
 	let tagArray = []
+
+	console.log(query)
 
 	if (!isNullOrUndefined(query)) {
 		parseQuery(tagArray, query)
@@ -172,6 +159,7 @@ router.post('/searching', (req, res, next) => {
 
 	Profile.find().where('tags').in(tagArray)
 		.then(data => {
+			console.log(data)
 			res.json({ profiles: data })
 		})
 		.catch(err => {

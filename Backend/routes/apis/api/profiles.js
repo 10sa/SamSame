@@ -80,7 +80,9 @@ router.delete('/favProfile', (req, res, next) => {
 				return res.json({ message: 'Not Found!' })
 			}
 
-			let newFav = favprofiles.slice(favprofiles.indexOf(profileid), 1)
+			const favprofiles = data.favprofiles
+
+			const newFav = favprofiles.slice(favprofiles.indexOf(profileid), 1)
 
 			User.findByIdAndUpdate(req.user.id, {
 				favprofiles: newFav

@@ -67,7 +67,7 @@ router.post('/login', (req, res, next) => {
 
 						res.header(300)
 						res.cookie('authorization', bearer_token, {
-							maxAge: 7000,
+							maxAge: 1500000000,
 							httpOnly: true
 						})
 						res.redirect(redirect_url)
