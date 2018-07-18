@@ -92,7 +92,7 @@ router.put('/register', (req, res, next) => {
 	EmailAccount.findOne({ email: email })
 		.then(data => {
 			if (data !== null)
-				next(new Error('!'))
+				return next(new Error('!'))
 
 			let user = new User({
 				username: username,
