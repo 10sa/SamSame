@@ -78,17 +78,17 @@
   <script type="text/javascript" src="resources/js/search.js"></script>
   <script type="text/javascript" src="resources/js/mypage.js"></script>
   <script type="text/javascript">
-    window.onload = function(event) {
-      profiles.profiles(function(response) {
+    window.onload = function (event) {
+      profiles.profiles(function (response) {
         profile.drawProfileFromJSON(response);
       });
-	  
-	  profiles.getFavProfile(function(response) {
-		response.profiles.forEach(function(value, index, array) {
-			if (profile.displayProfiles.id == value.id);
-				changeImage(value);
-		});
-	  });
+
+      profiles.getFavProfile(function (response) {
+        response.profiles.forEach(function (value, index, array) {
+          if (profile.displayProfiles.id == value.id);
+          changeImage(value);
+        });
+      });
     };
   </script>
 </head>
@@ -101,8 +101,8 @@
       <div class="search">
         <input type="text" class="searchTerm" placeholder="">
         <button type="submit" class="searchButton">
-                    <img src="resources/images/search.png" width="22.5px" height="23px">
-                </button>
+          <img src="resources/images/search.png" width="22.5px" height="23px">
+        </button>
       </div>
     </div>
 
@@ -127,14 +127,14 @@
             <div class="finder_col finder_fix _filter_row _category_filter">
 
               <h3 class="finder_tit">
-                              <strong>성별</strong>
-                          </h3>
+                <strong>성별</strong>
+              </h3>
               <div class="finder_row">
                 <div id="_categorySummaryFilterArea" class="scroll_search">
                   <div class="scrollbar_content">
                     <div class="finder_cell">
                       <h4 class="finder_cell_tit">
-                                          </h4>
+                      </h4>
                       <ul class="finder_list">
                         <li>
                           <input type="checkbox">남자
@@ -152,14 +152,14 @@
             <div class="finder_col finder_fix _filter_row _category_filter">
 
               <h3 class="finder_tit">
-                              <strong>연령대</strong>
-                          </h3>
+                <strong>연령대</strong>
+              </h3>
               <div class="finder_row">
                 <div id="_categorySummaryFilterArea" class="scroll_search">
                   <div class="scrollbar_content">
                     <div class="finder_cell">
                       <h4 class="finder_cell_tit">
-                                          </h4>
+                      </h4>
                       <ul class="finder_list">
                         <li>
                           <input type="checkbox">10대
@@ -191,25 +191,37 @@
 
             <div class="finder_col finder_fix _brand_filter _filter_row">
               <h3 class="finder_tit">
-                              <strong>키</strong>
-                          </h3>
+                <strong>키</strong>
+              </h3>
               <div class="finder_row">
                 <ul class="finder_tit_list">
-                  <li class="slidecontainer">
-                    <input type="range" min="130" max="200" class="slider" id="slider">
+                  <li>
+                    <input type="checkbox">150cm 이하
                   </li>
                   <li>
-                    <div id="demo"></div>
+                    <input type="checkbox">150cm~160cm
+                  </li>
+                  <li>
+                    <input type="checkbox">160cm~170cm
+                  </li>
+                  <li>
+                    <input type="checkbox">170cm~180cm
+                  </li>
+                  <li>
+                    <input type="checkbox">180cm~190cm
+                  </li>
+                  <li>
+                    <input type="checkbox">190cm 이상
                   </li>
                 </ul>
                 <div class="finder_tit_sort _filter_sort">
                   <a href="#" class="sort_btn on" data-sort-type="count">
-                                      <span class="ico_check"></span>
-                                  </a>
+                    <span class="ico_check"></span>
+                  </a>
 
                   <a href="#" class="sort_btn" data-sort-type="name">
-                                      <span class="ico_check"></span>
-                                  </a>
+                    <span class="ico_check"></span>
+                  </a>
 
                 </div>
                 <div class="scroll_search _summary_result">
@@ -228,8 +240,8 @@
             <div class="finder_col _filter_row">
 
               <h3 class="finder_tit">
-                              <strong>머리길이</strong>
-                          </h3>
+                <strong>머리길이</strong>
+              </h3>
               <ul class="finder_list">
                 <li>
                   <input type="checkbox">숏컷
@@ -244,11 +256,11 @@
             </div>
             <div class="finder_col _filter_row">
               <h3 class="finder_tit">
-                              <strong>피부톤</strong>
-                              <a href="#" class="btn_extend _filter_more" style="display:none" data-nclick-area="rcc*F">
+                <strong>피부톤</strong>
+                <a href="#" class="btn_extend _filter_more" style="display:none" data-nclick-area="rcc*F">
 
-                              </a>
-                          </h3>
+                </a>
+              </h3>
               <ul class="finder_list">
                 <li>
                   <input type="checkbox">웜톤
@@ -261,8 +273,8 @@
             <div class="finder_col finder_etc">
               <div class="finder_etc_inner">
                 <h3 class="finder_tit">
-                                  <strong>분위기</strong>
-                              </h3>
+                  <strong>분위기</strong>
+                </h3>
                 <ul class="finder_list">
                   <li>
                     <input type="checkbox">사랑스러운
@@ -673,10 +685,18 @@
         </div>
 
         <div class="container">
-          <span class="name" style=""><b>Username</b></span>
+          <span class="name" style="">
+            <b>Username</b>
+          </span>
           <hr>
 
-          <span class="email"><b>example@eamil.com</b></span><br><br><br /><br />
+          <span class="email">
+            <b>example@eamil.com</b>
+          </span>
+          <br>
+          <br>
+          <br />
+          <br />
 
           <button type="button" class="logout">로그아웃</button>
           <button type="button" class="secession">회원탈퇴</button>
@@ -689,7 +709,7 @@
       var output = document.getElementById("demo");
       output.innerHTML = slider.value;
 
-      slider.oninput = function() {
+      slider.oninput = function () {
         output.innerHTML = this.value;
       }
 
@@ -708,7 +728,7 @@
       var slider = document.getElementById("slider");
       var output = document.getElementById("demo");
       output.innerHTML = slider.value;
-      slider.oninput = function() {
+      slider.oninput = function () {
         output.innerHTML = this.value;
       }
     </script>
