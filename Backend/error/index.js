@@ -2,5 +2,6 @@
 module.exports = function (err, req, res, next) {
     console.log('Error Occured')
     console.log(err)
-    res.json({ message: 'Error!' })
+    res.header(500)
+    res.json({ error: 'Error!' })
 }

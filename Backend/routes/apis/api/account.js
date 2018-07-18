@@ -74,21 +74,25 @@ router.get('/logout', (req, res, next) => {
 })
 
 router.put('/register', (req, res, next) => {
-	if (req.user !== null)
+	if (req.user !== null) {
+		res.header(400)
 		return res.json({ message: 'Already logined!' })
+	}
 
 	const { username, email, password } = req.body
 	const level = 'User'
 
 	console.log(req.body)
 
-	if (isNullOrUndefined(username, email, password))
+	if (isNullOrUndefined(username, email, password)) {
+		res.header(400)
 		return res.send('Fail')
+	}
 
 	EmailAccount.findOne({ email: email })
 		.then(data => {
 			if (data !== null)
-				return res.send('Fuck')
+				next(new Error('!'))
 
 			let user = new User({
 				username: username,
@@ -111,8 +115,10 @@ router.put('/register', (req, res, next) => {
 })
 
 router.get('/userProfile', (req, res, next) => {
-	if (req.user === null)
+	if (req.user === null) {
+		res.json(400)
 		return res.json({ message: 'Could not find User!' })
+	}
 
 	User.findById(req.user.id)
 		.then(user => {
@@ -122,8 +128,10 @@ router.get('/userProfile', (req, res, next) => {
 })
 
 router.post('/userProfile', (req, res, next) => {
-	if (req.user === null)
+	if (req.user === null) {
+		res.header(400)
 		return res.json({ message: 'Could not find User!' })
+	}
 
 	const { email, username } = req.body
 	const key = email 

@@ -19,8 +19,10 @@ router.get('/profiles', (req, res, next) => {
 })
 
 router.get('/favProfile', (req, res, next) => {
-	if (req.user === null)
+	if (req.user === null) {
+		res.header(400)
 		return res.json({ message: 'You are not logined!' })
+	}
 
 	let result = []
 
@@ -35,16 +37,20 @@ router.get('/favProfile', (req, res, next) => {
 })
 
 router.put('/favProfile', (req, res, next) => {
-	if (req.user === null)
+	if (req.user === null) {
+		res.header(400)
 		return res.json({ message: 'You are not logined!' })
+	}
 
 	const { profileid } = req.body
 
 	User.findById(req.user.id)
 		.then(data => {
 			const favprofiles = data.favprofiles
-			if (favprofiles.indexOf(profileid) !== -1)
+			if (favprofiles.indexOf(profileid) !== -1) {
+				res.header(400)
 				return res.json({ message: 'Already selected!' })
+			}
 
 			favprofiles.push(profileid)
 
@@ -60,16 +66,19 @@ router.put('/favProfile', (req, res, next) => {
 })
 
 router.delete('/favProfile', (req, res, next) => {
-	if (req.user === null)
+	if (req.user === null) {
 		res.json({ message: 'You are not logined!' })
+	}
 
 	const { profileid } = req.body
 
 	User.findById(req.user.id)
 		.then(data => {
 			console.log(data.favprofiles.indexOf(profileid))
-			if (data.favprofiles.indexOf(profileid) === null)
+			if (data.favprofiles.indexOf(profileid) === null) {
+				res.header(400)
 				return res.json({ message: 'Not Found!' })
+			}
 
 			let newFav = favprofiles.slice(favprofiles.indexOf(profileid), 1)
 
@@ -86,11 +95,12 @@ router.delete('/favProfile', (req, res, next) => {
 
 router.put('/registerProfile', (req, res, next) => {
 	if (req.user === null) {
+		res.header(400)
 		return res.json({ message: 'Could not find User!' })
 	}
 
 	if (req.user.level !== 'Admin') {
-		console.log(req.user)
+		res.header(400)
 		return res.json({ message: 'No Auth to access' })
 	}
 

@@ -10,8 +10,10 @@ const User = require('./../../../database/models/user')
 const isNullOrUndefined = require('./../func/isNullOrUndefined')
 
 router.get('/recentSearch', (req, res, next) => {
-	if (req.user === null)
+	if (req.user === null) {
+		res.header(400)
 		return res.json({ message: 'You are not logined!' })
+	}
 
 	User.findById(req.user.id)
 		.then(data => {
