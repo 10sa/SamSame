@@ -21,4 +21,3 @@ account.userProfile = function (callback) {
 account.userProfile = function (key, value, callback) {
 	Util.CallAPI(String.format("key={0}&value={1}", key, value), "/apis/account/userProfile", "POST", callback);
 }
-

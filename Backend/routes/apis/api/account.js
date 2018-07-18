@@ -1,10 +1,11 @@
+'use strict'
 /* load express & general modules */
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 
 /* load mongoose models */
-const EmailAccount = require('./../../database/models/emailaccuont')
-const User = require('./../../database/models/user')
+const EmailAccount = require('./../../../database/models/emailaccuont')
+const User = require('./../../../database/models/user')
 
 /* load custom modules & functions */
 const isNullOrUndefined = require('./../func/isNullOrUndefined')
@@ -30,7 +31,7 @@ router.post('/login', (req, res, next) => {
 				},
 				req.app.get('JWT_SECRET'),
 				{
-					expiresIn: '15m',
+					expiresIn: '45m',
 					issuer: 'celebrity.org',
 					subject: 'userinfo'
 				},
@@ -56,17 +57,17 @@ router.post('/login', (req, res, next) => {
 			User.findById(data.userid)
 				.then(resUser => {
 					signPromise(resUser).then(token => {
-						res.send(token)
-					}).catch(err => {
-						next(err)
-					})
+						req.headers.authorization = 'bearer ' + token
+						res.header(200)
+						res.end()
+					}).catch(next)
 				})
 		})
 })
 
 router.get('/logout', (req, res, next) => {
 	if (req.user === null)
-		return req.json({ message: 'You are not logined!' })
+		return res.json({ message: 'You are not logined!' })
 
 	req.headers.authorization = null
 	res.json({ message: 'Success to logout' })
@@ -103,11 +104,10 @@ router.put('/register', (req, res, next) => {
 			})
 			eac.save()
 		})
-		.catch(err => {
-			next(err)
-		})
+		.catch(next)
 
-	res.json({ message: 'Success to register!' })
+	res.header(200)
+	res.end()
 })
 
 router.get('/userProfile', (req, res, next) => {
@@ -116,7 +116,7 @@ router.get('/userProfile', (req, res, next) => {
 
 	User.findById(req.user.id)
 		.then(user => {
-			return res.json({ userProfile: user })
+			return res.json({ profile: user })
 		})
 		.catch(err => next(err))
 })
@@ -126,10 +126,12 @@ router.post('/userProfile', (req, res, next) => {
 		return res.json({ message: 'Could not find User!' })
 
 	const { email, username } = req.body
+	const key = email 
+	const value = username
 
 	User.findByIdAndUpdate(req.user.id, {
-		email: email,
-		username: username
+		email: key,
+		username: value
 	}, (err, res) => {
 		if (err) next(err)
 	})
@@ -142,7 +144,8 @@ router.post('/userProfile', (req, res, next) => {
 			if (err) next(err)
 		})
 
-	res.json({ message: 'Success to update user' })
+	res.header(200)
+	res.end()
 })
 
 module.exports = router

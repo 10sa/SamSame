@@ -1,10 +1,11 @@
+'use strict'
 /* load express & general modules */
 const router = require('express').Router()
 const client = require('cheerio-httpcli')
 
 /* load mongoose models */
-const User = require('./../../database/models/user')
-const Profile = require('./../../database/models/profile')
+const User = require('./../../../database/models/user')
+const Profile = require('./../../../database/models/profile')
 
 /* custom modules */
 const isNullOrUndefined = require('./../func/isNullOrUndefined')
@@ -51,7 +52,8 @@ router.put('/favProfile', (req, res, next) => {
 				favprofiles: favprofiles
 			})
 				.then(data => {
-					res.json({ message: 'Success to Update!' })
+					res.header(200)
+					res.end()
 				})
 				.catch(err => next(err))
 		})
@@ -75,7 +77,8 @@ router.delete('/favProfile', (req, res, next) => {
 				favprofiles: newFav
 			})
 				.then(data => {
-					res.json({ message: 'Success to Remove!' })
+					res.header(200)
+					res.end()
 				})
 				.catch(err => next(err))
 		})

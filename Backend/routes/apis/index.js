@@ -1,3 +1,4 @@
+'use strict'
 /* load express modules */
 const router = require('express').Router()
 
@@ -7,7 +8,7 @@ const profiles = require('./api/profiles')
 const search = require('./api/search')
 
 /* load middlewares */
-const auth = require('./../middlewares/auth')
+const auth = require('./../../middlewares/auth')
 
 router.use('/', auth)
 router.use('/account', account)

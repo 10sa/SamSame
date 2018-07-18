@@ -1,3 +1,4 @@
+'use strict'
 /* basic modules */
 const http = require('http')
 const express = require('express')
@@ -10,14 +11,14 @@ const morgan = require('morgan')
 /* custom modules */
 require('./config')(app)
 const error = require('./error/index')
-const routes = require('./routes/index')
-
+const apis = require('./routes/apis/index')
 /* express setting */
 app.use(morgan('tiny'))
 app.use(bodyParser.urlencoded({ extend: false }))
 
 /* routing */
-app.use('/', routes)
+app.use('/', views)
+app.use('/apis', apis)
 
 /* server listening */
 // app.get('UPPERCASE')
