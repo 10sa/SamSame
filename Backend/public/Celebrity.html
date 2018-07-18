@@ -23,7 +23,7 @@
       profiles.profiles(function(response) {
         profile.drawProfileFromJSON(response);
       });
-	  
+
 	  profiles.getFavProfile(function(response) {
 		response.profiles.forEach(function(value, index, array) {
 			if (profile.displayProfiles.id == value.id);
@@ -78,8 +78,9 @@
             <span class="name" style=""><b>Username</b></span>
             <hr>
 
-            <span class="email"><b>example@eamil.com</b></span><br><br><br /><br />
+            <span class="email"><b>example@eamil.com</b></span><br><br><br />
 
+            <button type="button" class="favorite">즐겨찾기</button>
             <button type="button" class="logout">로그아웃</button>
             <button type="button" class="secession">회원탈퇴</button>
           </div>
