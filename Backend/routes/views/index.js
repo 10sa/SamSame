@@ -3,41 +3,45 @@ const router = require('express').Router()
 const auth = require('./../../middlewares/auth')
 const path = require('path')
 
-const front_path = './../../Frontend/'
-
 router.use('/', auth)
 router.get('/', (req, res) => {
+    const front_path = req.app.get('FRONT_PATH')
     if (req.user)
         res.sendFile(path.join(front_path, 'Celebrity.html'))
-    else 
+    else
         res.redirect('/login')
 })
 
 router.get('/register', (req, res) => {
+    const front_path = req.app.get('FRONT_PATH')
     if (req.user === null)
         res.sendFile(path.join(front_path, 'register.html'))
-    else 
+    else
         res.redirect('/')
 })
 
 router.get('/login', (req, res) => {
-    if (req.user === null)
+    const front_path = req.app.get('FRONT_PATH')
+    if (req.user === null) {
         res.sendFile(path.join(front_path, 'login.html'))
-    else 
+    }
+    else
         res.redirect('/')
 })
 
 router.get('/detail', (req, res) => {
+    const front_path = req.app.get('FRONT_PATH')
     if (req.user)
         res.sendFile(path.join(front_path, 'Celebrity_detail.html'))
-    else 
+    else
         res.redirect('/login')
 })
 
 router.get('/favorites', (req, res) => {
+    const front_path = req.app.get('FRONT_PATH')
     if (req.user)
         res.sendFile(path.join(front_path, 'Celebrity_Favorites.html'))
-    else 
+    else
         res.redirect('/login')
 })
 

@@ -4,6 +4,7 @@ const http = require('http')
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const path = require('path')
 
 /* dev modules */
 const morgan = require('morgan')
@@ -15,6 +16,7 @@ const apis = require('./routes/apis/index')
 const views = require('./routes/views/index')
 
 /* express setting */
+app.use(express.static(app.get('FRONT_PATH')))
 app.use(morgan('tiny'))
 app.use(bodyParser.urlencoded({ extend: false }))
 
