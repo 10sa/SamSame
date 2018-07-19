@@ -25,10 +25,11 @@
       });
 
 	  profiles.getFavProfile(function(response) {
-		response.profiles.forEach(function(value, index, array) {
-			if (profile.displayProfiles.id == value.id);
-				changeImage(value);
-		});
+      response.profiles.forEach(function(value, index, array) {
+        console.log(value);
+        if (profile.displayProfiles.id == value._id);
+          changeImage(value);
+      });
 	  });
     };
   </script>

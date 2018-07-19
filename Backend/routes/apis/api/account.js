@@ -13,8 +13,6 @@ const isNullOrUndefined = require('./../func/isNullOrUndefined')
 router.post('/login', (req, res, next) => {
 	const email = req.body.email
 	const password = req.body.password
-	console.log(email, password)
-
 	const redirect_url = '/'
 
 	const userPromise = function (data) {

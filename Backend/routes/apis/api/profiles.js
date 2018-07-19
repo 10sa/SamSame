@@ -7,9 +7,6 @@ const client = require('cheerio-httpcli')
 const User = require('./../../../database/models/user')
 const Profile = require('./../../../database/models/profile')
 
-/* custom modules */
-const isNullOrUndefined = require('./../func/isNullOrUndefined')
-
 router.get('/profiles', (req, res, next) => {
 	Profile.find({})
 		.then(data => {
@@ -24,14 +21,9 @@ router.get('/favProfile', (req, res, next) => {
 		return res.json({ message: 'You are not logined!' })
 	}
 
-	let result = []
-
 	User.findById(req.user.id)
 		.then(data => {
-			if (data !== null)
-				result = data.favprofiles
-
-			return res.json({ profiles: result })
+			return res.json({ profiles: data.favprofiles })
 		})
 		.catch(err => next(err))
 })
@@ -42,17 +34,21 @@ router.put('/favProfile', (req, res, next) => {
 		return res.json({ message: 'You are not logined!' })
 	}
 
-	const { profileid } = req.body
+	const { profileId } = req.body
+
+	if (profileId === undefined) {
+		res.header(400)
+		return res.json({ message: 'Wrong Input!' })
+	}
 
 	User.findById(req.user.id)
 		.then(data => {
 			const favprofiles = data.favprofiles
-			if (favprofiles.indexOf(profileid) !== -1) {
+			if (favprofiles.indexOf(profileId) !== -1) {
 				res.header(400)
 				return res.json({ message: 'Already selected!' })
 			}
-
-			favprofiles.push(profileid)
+			favprofiles.push(profileId)
 
 			User.findByIdAndUpdate(req.user.id, {
 				favprofiles: favprofiles
@@ -70,20 +66,24 @@ router.delete('/favProfile', (req, res, next) => {
 		res.json({ message: 'You are not logined!' })
 	}
 
-	const { profileid } = req.body
+	const { profileId } = req.body
+
+	if (profileId === undefined) {
+		res.header(400)
+		return res.json({ message: 'Wrong Input!' })
+	}
 
 	User.findById(req.user.id)
 		.then(data => {
-			console.log(data.favprofiles.indexOf(profileid))
-			if (data.favprofiles.indexOf(profileid) === null) {
+			if (data.favprofiles.indexOf(profileId) === -1) {
 				res.header(400)
 				return res.json({ message: 'Not Found!' })
 			}
 
 			const favprofiles = data.favprofiles
 
-			const newFav = favprofiles.slice(favprofiles.indexOf(profileid), 1)
-
+			const newFav = favprofiles.slice(favprofiles.indexOf(profileId), 1)
+			console.log(newFav)
 			User.findByIdAndUpdate(req.user.id, {
 				favprofiles: newFav
 			})

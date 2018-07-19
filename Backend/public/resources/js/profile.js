@@ -10,7 +10,7 @@ profile.test = function(event) {
 profile.drawProfileFromJSON = function (response)
 {
 	response.profiles.forEach(function (value, index, array) {
-		profile.drawProfile(value.profilename, value.tags, value.originfollow, value.originprofileuri, value.imageuri, value.id);
+		profile.drawProfile(value.profilename, value.tags, value.originfollow, value.originprofileuri, value.imageuri, value._id);
 	});
 }
 
