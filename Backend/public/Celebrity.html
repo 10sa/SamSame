@@ -18,19 +18,31 @@
   <script type="text/javascript" src="resources/js/profile.js"></script>
   <script type="text/javascript" src="resources/js/search.js"></script>
   <script type="text/javascript" src="resources/js/mypage.js"></script>
+  <script type="text/javascript" src="resources/js/api-account.js"></script>
   <script type="text/javascript">
     window.onload = function(event) {
+      account.getUserProfile(function(response) {
+        var email = response.profile.email;
+        var username = response.profile.username;
+
+        document.getElementById("username").innerText = username;
+        document.getElementById("email").innerText = email;
+      });
+
       profiles.profiles(function(response) {
         profile.drawProfileFromJSON(response);
       });
 
-	  profiles.getFavProfile(function(response) {
-      response.profiles.forEach(function(value, index, array) {
-        console.log(value);
-        if (profile.displayProfiles.id == value._id);
-          changeImage(value);
+      profiles.getFavProfile(function(response) {
+        response.profiles.forEach(function(value, index, array) {
+          var id = value;
+          profile.displayProfiles.forEach(function (value, index, array)
+          {
+            if (id == value.id)
+              changeImage(value.childNodes[0].childNodes[0]);
+          });
+        });
       });
-	  });
     };
   </script>
 </head>
@@ -51,8 +63,8 @@
     <div class="dropdown">
       <img src="resources/images/person.png" width="33px" height="33px" style="margin-top: 6.5px; margin-left: 6.5px;">
       <div class="dropdown-content">
-        <span class="display_name">셀럽파이브</span>
-        <span class="display_email">Celebrity@sibal.fff</span>
+        <span class="display_name" id="username">셀럽파이브</span>
+        <span class="display_email" id="email">Celebrity@sibal.fff</span>
         <br>
         <br>
         <button onclick="document.getElementById('mypage').style.display='block'" style="width:auto;" class="mypage">마이페이지</button>

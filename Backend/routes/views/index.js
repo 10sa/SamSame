@@ -5,8 +5,6 @@ const path = require('path')
 
 router.use('/', auth)
 router.get('/', (req, res) => {
-    console.log(req.user)
-
     const front_path = req.app.get('FRONT_PATH')
     if (req.user)
         res.sendFile(path.join(front_path, 'Celebrity.html'))

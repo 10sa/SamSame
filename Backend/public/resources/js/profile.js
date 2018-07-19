@@ -21,9 +21,10 @@ profile.clearProfiles = function()
 		return;
 	
 	var profiles = document.getElementsByClassName("centerDiv");
-	profiles.forEach(function (value, index, array) {
-		parent.removeChild(value);
-	});
+	for (var i = 0; i < profiles.length; i++)
+		parent.removeChild(profiles[i]);
+
+	this.displayProfiles = [];
 }
 
 profile.drawProfile = function (name, tags, follows, link, image, id)
@@ -66,7 +67,7 @@ profile.drawProfile = function (name, tags, follows, link, image, id)
 	tagDiv.className = "tagdiv";
 	contentDiv.appendChild(tagDiv);
 	
-	var tagsP = document.createElement("p");
+	var tagsP = document.createElement("span");
 	tags.forEach(function (value, index, array) {
 		tagsP.innerText += ("#" + value + " ");
 	});

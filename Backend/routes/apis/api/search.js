@@ -159,7 +159,6 @@ router.post('/searching', (req, res, next) => {
 
 	Profile.find().where('tags').in(tagArray)
 		.then(data => {
-			console.log(data)
 			res.json({ profiles: data })
 		})
 		.catch(err => {
