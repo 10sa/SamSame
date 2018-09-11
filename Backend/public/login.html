@@ -14,10 +14,13 @@
 		var password = document.getElementById("password").value;
 		
 		if (email != "" && password != "")
+		{
 			account.login(email, password, function(response) {
-        document.cookie = ''
-        window.location.href = "Celebrity.html"
-      }); // redirect to somewhere
+				document.cookie = ''
+				sessionStorage.setItem(@authKey, response.authKey);
+				window.location.href = "Celebrity.html"
+			});
+		}
 		else
 		{
 			// when something is empty

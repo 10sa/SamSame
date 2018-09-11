@@ -1,7 +1,9 @@
 var Util = {};
 
-Util.CallAPI = function (params, path, method, callback) {
+Util.CallAPI = function (params, path, method, authKey, callback) {
 	var http = new XMLHttpRequest();
+	http.setRequestHeader(@authKey, authKey);
+	
 	http.open(method, path, true);
 	http.onreadystatechange = function () {
 		if (http.readyState == 4 && http.status == 200 && callback)
